@@ -1,19 +1,19 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gopi Setty Lakshmi Dheeraj — Software & Embedded Systems Engineer</title>
-  <meta name="description" content="Portfolio of Gopi Setty Lakshmi Dheeraj — CSE Student @ VIT-AP (CGPA 8.19). Specializing in Embedded Systems, IoT, Multi-Agent AI, and Full-Stack Engineering.">
+  <title>Gopi Setty Lakshmi Dheeraj â€” Software & Embedded Systems Engineer</title>
+  <meta name="description" content="Portfolio of Gopi Setty Lakshmi Dheeraj â€” CSE Student @ VIT-AP (CGPA 8.19). Specializing in Embedded Systems, IoT, Multi-Agent AI, and Full-Stack Engineering.">
   <meta name="theme-color" content="#0a0a0a">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Gopi Setty Lakshmi Dheeraj — Software & Embedded Systems Engineer">
+  <meta property="og:title" content="Gopi Setty Lakshmi Dheeraj â€” Software & Embedded Systems Engineer">
   <meta property="og:description" content="CSE Student @ VIT-AP building autonomous robotics, IoT systems, and multi-agent AI applications.">
   <meta property="og:type" content="website">
 
   <!-- Favicon -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect fill=%22%230a0a0a%22 width=%22100%22 height=%22100%22 rx=%2220%22/><text x=%2250%22 y=%2268%22 font-family=%22sans-serif%22 font-size=%2240%22 font-weight=%22700%22 fill=%22%23C8A97E%22 text-anchor=%22middle%22>GD</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect fill=%22%230a0a0a%22 width=%22100%22 height=%22100%22 rx=%2220%22/><text x=%2250%22 y=%2268%22 font-family=%22sans-serif%22 font-size=%2240%22 font-weight=%22700%22 fill=%22%23818cf8%22 text-anchor=%22middle%22>GD</text></svg>">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,27 +22,33 @@
 
   <style>
     /* ============================================
-       DESIGN SYSTEM — WARM GOLD LUXURY PALETTE
+       DESIGN SYSTEM â€” MODERN VIOLET / CYAN
        ============================================ */
     :root {
-      --bg: #0a0a0a;
-      --bg-elevated: #111111;
-      --bg-card: rgba(18, 18, 18, 0.85);
-      --bg-card-hover: rgba(28, 28, 28, 0.95);
+      --bg: #0b0d17;
+      --bg-elevated: #111425;
+      --bg-card: rgba(15, 18, 35, 0.85);
+      --bg-card-hover: rgba(25, 30, 55, 0.95);
 
-      --border: rgba(200, 169, 126, 0.12);
-      --border-hover: rgba(200, 169, 126, 0.35);
+      --border: rgba(129, 140, 248, 0.12);
+      --border-hover: rgba(129, 140, 248, 0.35);
 
-      --gold: #C8A97E;
-      --gold-light: #dcc9a8;
-      --gold-dim: rgba(200, 169, 126, 0.15);
-      --gold-glow: rgba(200, 169, 126, 0.25);
+      --accent: #818cf8;
+      --accent-light: #a5b4fc;
+      --accent-dim: rgba(129, 140, 248, 0.12);
+      --accent-glow: rgba(129, 140, 248, 0.2);
+      --cyan: #22d3ee;
+      --cyan-dim: rgba(34, 211, 238, 0.1);
       --emerald: #34d399;
       --emerald-dim: rgba(52, 211, 153, 0.12);
+      --violet: #a78bfa;
+      --rose: #fb7185;
 
-      --text-heading: #f0ece4;
-      --text-body: #a09a8e;
-      --text-muted: #6b6560;
+      --gradient-brand: linear-gradient(135deg, #818cf8 0%, #a78bfa 50%, #f472b6 100%);
+
+      --text-heading: #f1f5f9;
+      --text-body: #94a3b8;
+      --text-muted: #64748b;
 
       --font-display: 'Syne', sans-serif;
       --font-body: 'Inter', sans-serif;
@@ -63,12 +69,13 @@
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+      background-image:
+        radial-gradient(circle at 15% 15%, rgba(129, 140, 248, 0.06) 0%, transparent 40%),
+        radial-gradient(circle at 85% 65%, rgba(167, 139, 250, 0.04) 0%, transparent 40%);
     }
 
-    body.loading { overflow: hidden; }
-
     ::selection {
-      background: var(--gold);
+      background: var(--accent);
       color: var(--bg);
     }
 
@@ -80,56 +87,6 @@
       max-width: var(--max-width);
       margin: 0 auto;
       padding: 0 2rem;
-    }
-
-    /* ============================================
-       PRELOADER
-       ============================================ */
-    .preloader {
-      position: fixed; inset: 0; z-index: 9999;
-      background: var(--bg);
-      display: flex; align-items: center; justify-content: center;
-      transition: opacity 0.6s ease, visibility 0.6s ease;
-    }
-    .preloader.done {
-      opacity: 0; visibility: hidden;
-      pointer-events: none;
-    }
-    .preloader__content { text-align: center; }
-    .preloader__counter {
-      display: flex; align-items: baseline; justify-content: center;
-      font-family: var(--font-display);
-      font-size: clamp(4rem, 10vw, 8rem);
-      font-weight: 800;
-      color: var(--text-heading);
-      line-height: 1;
-    }
-    .preloader__percent {
-      font-size: 0.35em;
-      color: var(--gold);
-      margin-left: 0.15em;
-    }
-    .preloader__bar {
-      width: 200px; height: 2px;
-      background: rgba(200, 169, 126, 0.15);
-      border-radius: 2px;
-      margin: 1.5rem auto 0;
-      overflow: hidden;
-    }
-    .preloader__bar-fill {
-      height: 100%; width: 0%;
-      background: var(--gold);
-      border-radius: 2px;
-      transition: width 0.1s linear;
-    }
-    .preloader__tagline {
-      display: block;
-      margin-top: 1rem;
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
     }
 
     /* ============================================
@@ -151,7 +108,7 @@
     }
     .cursor.hover .cursor__circle {
       transform: scale(1.8);
-      border-color: var(--gold);
+      border-color: var(--accent);
     }
     .cursor-dot {
       position: fixed; z-index: 9998;
@@ -199,8 +156,8 @@
       transition: border-color 0.3s, box-shadow 0.3s;
     }
     .nav__logo:hover {
-      border-color: var(--gold);
-      box-shadow: 0 0 20px var(--gold-glow);
+      border-color: var(--accent);
+      box-shadow: 0 0 20px var(--accent-glow);
     }
     .nav__links {
       display: flex; align-items: center; gap: 0.25rem;
@@ -215,20 +172,20 @@
     }
     .nav__link:hover {
       color: var(--text-heading);
-      background: rgba(200, 169, 126, 0.08);
+      background: rgba(129, 140, 248, 0.08);
     }
     .nav__link--cta {
-      background: var(--gold-dim);
-      color: var(--gold);
-      border: 1px solid rgba(200, 169, 126, 0.2);
+      background: var(--accent-dim);
+      color: var(--accent);
+      border: 1px solid rgba(129, 140, 248, 0.2);
       border-radius: 100px;
       padding: 0.5rem 1.1rem;
       margin-left: 0.5rem;
     }
     .nav__link--cta:hover {
-      background: var(--gold);
+      background: var(--accent);
       color: var(--bg);
-      box-shadow: 0 4px 20px var(--gold-glow);
+      box-shadow: 0 4px 20px var(--accent-glow);
     }
 
     /* Hamburger */
@@ -241,7 +198,7 @@
       gap: 6px; padding: 0;
       transition: border-color 0.3s;
     }
-    .nav__hamburger:hover { border-color: var(--gold); }
+    .nav__hamburger:hover { border-color: var(--accent); }
     .nav__hamburger-lines { display: flex; flex-direction: column; gap: 6px; }
     .nav__hamburger-lines span {
       display: block; width: 20px; height: 1.5px;
@@ -283,7 +240,7 @@
     .menu-overlay.active .menu-overlay__link {
       opacity: 1; transform: translateY(0);
     }
-    .menu-overlay__link:hover { color: var(--gold); }
+    .menu-overlay__link:hover { color: var(--accent); }
     .menu-overlay__link-arrow { display: none; }
     .menu-overlay__footer {
       position: absolute; bottom: 2rem;
@@ -295,7 +252,7 @@
       color: var(--text-body);
       transition: color 0.2s;
     }
-    .menu-overlay__footer-socials a:hover { color: var(--gold); }
+    .menu-overlay__footer-socials a:hover { color: var(--accent); }
 
     /* ============================================
        HERO SECTION
@@ -325,7 +282,7 @@
     .hero__label span {
       font-family: var(--font-mono);
       font-size: 0.8rem;
-      color: var(--gold);
+      color: var(--accent);
       text-transform: uppercase;
       letter-spacing: 0.15em;
       opacity: 0;
@@ -353,7 +310,7 @@
     .hero__title-line:nth-child(2) span { animation-delay: 1.55s; }
     .hero__title-line em {
       font-style: italic;
-      color: var(--gold);
+      color: var(--accent);
     }
     .hero__subtitle {
       font-size: clamp(0.95rem, 1.5vw, 1.15rem);
@@ -391,7 +348,7 @@
     }
     .hero__meta span { display: block; }
     .hero__meta-label {
-      color: var(--gold) !important;
+      color: var(--accent) !important;
       margin-bottom: 0.3rem;
       font-weight: 600;
     }
@@ -402,7 +359,7 @@
     }
     .hero__scroll-line {
       width: 1px; height: 50px;
-      background: linear-gradient(to bottom, var(--gold), transparent);
+      background: linear-gradient(to bottom, var(--accent), transparent);
       animation: scrollPulse 2s infinite;
     }
     .hero__scroll span {
@@ -454,11 +411,11 @@
       text-decoration: none;
     }
     .btn--primary {
-      background: var(--gold);
+      background: var(--accent);
       color: var(--bg);
     }
     .btn--primary:hover {
-      box-shadow: 0 8px 30px var(--gold-glow);
+      box-shadow: 0 8px 30px var(--accent-glow);
       transform: translateY(-2px);
     }
     .btn--outline {
@@ -467,9 +424,9 @@
       border: 1px solid var(--border);
     }
     .btn--outline:hover {
-      border-color: var(--gold);
-      color: var(--gold);
-      background: var(--gold-dim);
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-dim);
       transform: translateY(-2px);
     }
 
@@ -500,7 +457,7 @@
       letter-spacing: 0.05em;
     }
     .marquee__dot {
-      color: var(--gold);
+      color: var(--accent);
       font-size: 0.5rem;
     }
     @keyframes marqueeScroll {
@@ -508,7 +465,7 @@
     }
 
     /* ============================================
-       SECTIONS — GENERAL
+       SECTIONS â€” GENERAL
        ============================================ */
     .section {
       padding: 7rem 0;
@@ -525,7 +482,7 @@
       font-family: var(--font-display);
       font-size: clamp(3rem, 5vw, 4.5rem);
       font-weight: 800;
-      color: rgba(200, 169, 126, 0.12);
+      color: rgba(129, 140, 248, 0.12);
       line-height: 1;
       letter-spacing: -0.04em;
     }
@@ -533,7 +490,7 @@
     .section__tag {
       font-family: var(--font-mono);
       font-size: 0.72rem;
-      color: var(--gold);
+      color: var(--accent);
       text-transform: uppercase;
       letter-spacing: 0.15em;
       font-weight: 600;
@@ -573,7 +530,7 @@
       color: var(--text-heading);
       font-weight: 600;
     }
-    .about__text .gold { color: var(--gold); }
+    .about__text .gold { color: var(--accent); }
     .about__stats {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -617,14 +574,14 @@
       content: '';
       position: absolute; top: 0; left: 0;
       width: 100%; height: 100%;
-      background: linear-gradient(135deg, rgba(200, 169, 126, 0.04), transparent 60%);
+      background: linear-gradient(135deg, rgba(129, 140, 248, 0.04), transparent 60%);
       opacity: 0;
       transition: opacity 0.4s;
     }
     .project-card:hover {
       border-color: var(--border-hover);
       transform: translateY(-4px);
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 40px rgba(200, 169, 126, 0.06);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 40px rgba(129, 140, 248, 0.06);
     }
     .project-card:hover::before { opacity: 1; }
     .project-card__header {
@@ -638,7 +595,7 @@
       font-family: var(--font-display);
       font-size: 0.85rem;
       font-weight: 700;
-      color: var(--gold);
+      color: var(--accent);
       margin-bottom: 0.5rem;
     }
     .project-card__title {
@@ -650,7 +607,7 @@
     .project-card__stack {
       font-family: var(--font-mono);
       font-size: 0.8rem;
-      color: var(--gold);
+      color: var(--accent);
       margin-top: 0.3rem;
       opacity: 0.8;
     }
@@ -662,14 +619,14 @@
       border-radius: 100px;
     }
     .type-iot {
-      background: rgba(200, 169, 126, 0.1);
-      color: var(--gold);
-      border: 1px solid rgba(200, 169, 126, 0.25);
+      background: rgba(129, 140, 248, 0.1);
+      color: var(--accent);
+      border: 1px solid rgba(129, 140, 248, 0.25);
     }
     .type-robotics {
-      background: rgba(200, 169, 126, 0.1);
-      color: var(--gold-light);
-      border: 1px solid rgba(200, 169, 126, 0.25);
+      background: rgba(129, 140, 248, 0.1);
+      color: var(--accent-light);
+      border: 1px solid rgba(129, 140, 248, 0.25);
     }
     .project-card__desc {
       color: var(--text-body);
@@ -686,8 +643,8 @@
       position: relative; z-index: 1;
     }
     .metric-box {
-      background: rgba(200, 169, 126, 0.04);
-      border: 1px solid rgba(200, 169, 126, 0.08);
+      background: rgba(129, 140, 248, 0.04);
+      border: 1px solid rgba(129, 140, 248, 0.08);
       border-radius: 12px;
       padding: 0.85rem 1rem;
     }
@@ -701,7 +658,7 @@
     .metric-value {
       font-size: 0.9rem;
       font-weight: 600;
-      color: var(--gold);
+      color: var(--accent);
       margin-top: 0.15rem;
     }
     .project-tags-flex {
@@ -712,7 +669,7 @@
     .tech-tag {
       font-family: var(--font-mono);
       font-size: 0.72rem;
-      background: rgba(200, 169, 126, 0.06);
+      background: rgba(129, 140, 248, 0.06);
       color: var(--text-body);
       padding: 0.35rem 0.75rem;
       border-radius: 6px;
@@ -720,9 +677,9 @@
       transition: all 0.25s;
     }
     .tech-tag:hover {
-      background: var(--gold-dim);
+      background: var(--accent-dim);
       border-color: var(--border-hover);
-      color: var(--gold);
+      color: var(--accent);
     }
 
     /* ============================================
@@ -763,7 +720,7 @@
       font-family: var(--font-display);
       font-size: 1.05rem;
       font-weight: 700;
-      color: var(--gold);
+      color: var(--accent);
     }
     .repo-desc {
       font-size: 0.88rem;
@@ -784,7 +741,7 @@
     .arch-label {
       font-family: var(--font-mono);
       font-size: 0.68rem;
-      color: var(--gold);
+      color: var(--accent);
       text-transform: uppercase;
       font-weight: 600; flex-shrink: 0;
     }
@@ -805,7 +762,7 @@
       border-top: 1px solid var(--border);
     }
     .repo-footer span:last-child {
-      color: var(--gold);
+      color: var(--accent);
       transition: transform 0.2s;
     }
     .repo-card:hover .repo-footer span:last-child {
@@ -844,8 +801,8 @@
       border-radius: 12px;
       display: flex; align-items: center; justify-content: center;
       font-size: 1.25rem; flex-shrink: 0;
-      background: var(--gold-dim);
-      color: var(--gold);
+      background: var(--accent-dim);
+      color: var(--accent);
     }
     .skill-card__title {
       font-family: var(--font-display);
@@ -861,16 +818,16 @@
       font-size: 0.82rem;
       font-weight: 500;
       color: var(--text-body);
-      background: rgba(200, 169, 126, 0.05);
+      background: rgba(129, 140, 248, 0.05);
       padding: 0.45rem 0.85rem;
       border-radius: 8px;
       border: 1px solid var(--border);
       transition: all 0.25s;
     }
     .chip-item:hover {
-      background: var(--gold-dim);
+      background: var(--accent-dim);
       border-color: var(--border-hover);
-      color: var(--gold);
+      color: var(--accent);
     }
     .status-tag {
       font-family: var(--font-mono);
@@ -881,7 +838,7 @@
       margin-left: 0.3rem;
     }
     .tag-active { background: var(--emerald-dim); color: var(--emerald); }
-    .tag-queued { background: var(--gold-dim); color: var(--gold); }
+    .tag-queued { background: rgba(167, 139, 250, 0.12); color: var(--violet); }
 
     /* ============================================
        EDUCATION & CERTIFICATIONS
@@ -913,7 +870,7 @@
     }
     .school-degree {
       font-size: 0.92rem;
-      color: var(--gold);
+      color: var(--accent);
       margin-top: 0.3rem;
     }
     .school-degree strong { color: var(--text-heading); }
@@ -957,10 +914,10 @@
     .cert-icon {
       width: 42px; height: 42px;
       border-radius: 12px;
-      background: var(--gold-dim);
+      background: var(--accent-dim);
       display: flex; align-items: center; justify-content: center;
       font-size: 1.1rem; flex-shrink: 0;
-      color: var(--gold);
+      color: var(--accent);
     }
     .cert-name {
       font-weight: 700;
@@ -977,13 +934,13 @@
       font-family: var(--font-mono);
       font-size: 0.72rem;
       font-weight: 600;
-      color: var(--gold);
+      color: var(--accent);
       text-decoration: none;
       margin-top: 0.4rem;
       transition: color 0.2s, transform 0.2s;
     }
     .cert-link:hover {
-      color: var(--gold-light);
+      color: var(--accent-light);
       transform: translateX(2px);
     }
 
@@ -1049,7 +1006,7 @@
     }
     .contact-intro__heading em {
       font-style: italic;
-      color: var(--gold);
+      color: var(--accent);
     }
     .contact-intro__sub {
       font-size: 1rem;
@@ -1079,10 +1036,10 @@
     .contact-icon {
       width: 50px; height: 50px;
       border-radius: 14px;
-      background: var(--gold-dim);
+      background: var(--accent-dim);
       display: flex; align-items: center; justify-content: center;
       flex-shrink: 0;
-      color: var(--gold);
+      color: var(--accent);
     }
     .contact-label {
       font-family: var(--font-mono);
@@ -1130,16 +1087,16 @@
       width: 42px; height: 42px;
       border-radius: 12px;
       display: inline-flex; align-items: center; justify-content: center;
-      background: rgba(200, 169, 126, 0.06);
+      background: rgba(129, 140, 248, 0.06);
       border: 1px solid var(--border);
       color: var(--text-body);
       transition: all 0.3s var(--transition);
     }
     .footer__social-link:hover {
       transform: translateY(-3px) scale(1.05);
-      color: var(--gold);
+      color: var(--accent);
       border-color: var(--border-hover);
-      box-shadow: 0 8px 20px rgba(200, 169, 126, 0.15);
+      box-shadow: 0 8px 20px rgba(129, 140, 248, 0.15);
     }
 
     /* ============================================
@@ -1165,7 +1122,7 @@
     .scroll-bar {
       position: fixed; top: 0; left: 0;
       height: 2px; width: 0%;
-      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      background: var(--gradient-brand);
       z-index: 1000;
       transition: width 0.1s ease-out;
     }
@@ -1201,24 +1158,10 @@
     }
   </style>
 </head>
-<body class="loading">
+<body>
 
   <!-- ==================== SCROLL PROGRESS ==================== -->
   <div class="scroll-bar" id="scrollBar"></div>
-
-  <!-- ==================== PRELOADER ==================== -->
-  <div class="preloader" id="preloader">
-    <div class="preloader__content">
-      <div class="preloader__counter">
-        <span class="preloader__number" id="preloader-number">0</span>
-        <span class="preloader__percent">%</span>
-      </div>
-      <div class="preloader__bar">
-        <div class="preloader__bar-fill" id="preloader-bar"></div>
-      </div>
-      <span class="preloader__tagline">Loading Experience</span>
-    </div>
-  </div>
 
   <!-- ==================== CUSTOM CURSOR ==================== -->
   <div class="cursor" id="cursor">
@@ -1276,7 +1219,7 @@
       <canvas class="hero__canvas" id="hero-canvas"></canvas>
       <div class="hero__content">
         <div class="hero__label">
-          <span>CSE Undergraduate · Embedded Systems · VIT-AP University</span>
+          <span>CSE Undergraduate Â· Embedded Systems Â· VIT-AP University</span>
         </div>
         <h1 class="hero__title">
           <div class="hero__title-line">
@@ -1420,8 +1363,8 @@
             <div class="project-card__header">
               <div>
                 <div class="project-card__number">01</div>
-                <h3 class="project-card__title">Flame Defender AR-16 — Autonomous Fire Suppression</h3>
-                <p class="project-card__stack">ESP32 · Arduino · KY-026 Flame Sensor · Dual-Axis Servo · C++</p>
+                <h3 class="project-card__title">Flame Defender AR-16 â€” Autonomous Fire Suppression</h3>
+                <p class="project-card__stack">ESP32 Â· Arduino Â· KY-026 Flame Sensor Â· Dual-Axis Servo Â· C++</p>
               </div>
               <span class="project-type-badge type-robotics">Robotics & Safety</span>
             </div>
@@ -1455,8 +1398,8 @@
             <div class="project-card__header">
               <div>
                 <div class="project-card__number">02</div>
-                <h3 class="project-card__title">Obstacle Avoidance Robot — Self-Navigating Vehicle</h3>
-                <p class="project-card__stack">Arduino UNO · Ultrasonic HC-SR04 · Servo Scanner · Motor Driver</p>
+                <h3 class="project-card__title">Obstacle Avoidance Robot â€” Self-Navigating Vehicle</h3>
+                <p class="project-card__stack">Arduino UNO Â· Ultrasonic HC-SR04 Â· Servo Scanner Â· Motor Driver</p>
               </div>
               <span class="project-type-badge type-robotics">Autonomous Systems</span>
             </div>
@@ -1486,8 +1429,8 @@
             <div class="project-card__header">
               <div>
                 <div class="project-card__number">03</div>
-                <h3 class="project-card__title">Queue Sense — Smart Queue Monitoring System</h3>
-                <p class="project-card__stack">Arduino Uno · IR Sensors · Wi-Fi Module · LCD · Web Dashboard</p>
+                <h3 class="project-card__title">Queue Sense â€” Smart Queue Monitoring System</h3>
+                <p class="project-card__stack">Arduino Uno Â· IR Sensors Â· Wi-Fi Module Â· LCD Â· Web Dashboard</p>
               </div>
               <span class="project-type-badge type-iot">IoT & Automation</span>
             </div>
@@ -1742,7 +1685,7 @@
             <div>
               <h3 class="school-name">VIT - AP University, Amaravati</h3>
               <div class="school-degree">B.Tech in Computer Science and Engineering &bull; <strong>Junior Year (5th Semester)</strong></div>
-              <p style="color: var(--gold); font-family: var(--font-mono); font-size: 0.85rem; margin-top: 0.4rem;">
+              <p style="color: var(--accent); font-family: var(--font-mono); font-size: 0.85rem; margin-top: 0.4rem;">
                 Current CGPA: <strong style="color: var(--text-heading);">8.19</strong> &bull; Based in: <strong style="color: var(--text-heading);">Kurnool / Hyderabad</strong>
               </p>
             </div>
@@ -1765,38 +1708,38 @@
         <div class="cert-grid">
 
           <div class="cert-card reveal">
-            <div class="cert-icon">✓</div>
+            <div class="cert-icon">âœ“</div>
             <div style="flex: 1;">
-              <div class="cert-name">IBM — Advanced Generative AI</div>
+              <div class="cert-name">IBM â€” Advanced Generative AI</div>
               <div class="cert-issuer">IBM Cognitive Class CEP</div>
-              <a href="https://courses.ibmcep.cognitiveclass.ai/certificates/488ad17cb18a4bf5b598a9b69d4e8df6" target="_blank" rel="noopener" class="cert-link">View Credential ↗</a>
+              <a href="https://courses.ibmcep.cognitiveclass.ai/certificates/488ad17cb18a4bf5b598a9b69d4e8df6" target="_blank" rel="noopener" class="cert-link">View Credential â†—</a>
             </div>
           </div>
 
           <div class="cert-card reveal">
-            <div class="cert-icon">✓</div>
+            <div class="cert-icon">âœ“</div>
             <div style="flex: 1;">
               <div class="cert-name">Hedera Certified Developer Associate (HCDA)</div>
               <div class="cert-issuer">Hedera Hashgraph Certification</div>
-              <a href="https://drive.google.com/file/d/1KnWrKM63rQgf_OBQpEVhm6BuHx84vust/view?usp=sharing" target="_blank" rel="noopener" class="cert-link">View Credential ↗</a>
+              <a href="https://drive.google.com/file/d/1KnWrKM63rQgf_OBQpEVhm6BuHx84vust/view?usp=sharing" target="_blank" rel="noopener" class="cert-link">View Credential â†—</a>
             </div>
           </div>
 
           <div class="cert-card reveal">
-            <div class="cert-icon">✓</div>
+            <div class="cert-icon">âœ“</div>
             <div style="flex: 1;">
               <div class="cert-name">Hedera Certified Foundation (HCF)</div>
               <div class="cert-issuer">Hedera Hashgraph Certification</div>
-              <a href="https://drive.google.com/file/d/152P0SYbRyD0gFiEnLYvfHn1McIFzV2NT/view?usp=sharing" target="_blank" rel="noopener" class="cert-link">View Credential ↗</a>
+              <a href="https://drive.google.com/file/d/152P0SYbRyD0gFiEnLYvfHn1McIFzV2NT/view?usp=sharing" target="_blank" rel="noopener" class="cert-link">View Credential â†—</a>
             </div>
           </div>
 
           <div class="cert-card reveal">
-            <div class="cert-icon">✓</div>
+            <div class="cert-icon">âœ“</div>
             <div style="flex: 1;">
               <div class="cert-name">Ignite India Program Certificate</div>
               <div class="cert-issuer">Certificate of Proficiency</div>
-              <a href="https://drive.google.com/file/d/19q9gGV6raOy-j-UwfYmNMRh_DTHd-opQ/view" target="_blank" rel="noopener" class="cert-link">View Credential ↗</a>
+              <a href="https://drive.google.com/file/d/19q9gGV6raOy-j-UwfYmNMRh_DTHd-opQ/view" target="_blank" rel="noopener" class="cert-link">View Credential â†—</a>
             </div>
           </div>
 
@@ -1820,7 +1763,7 @@
 
           <div class="role-card reveal">
             <div>
-              <div class="role-emoji">🔌</div>
+              <div class="role-emoji">ðŸ”Œ</div>
               <h3 class="role-title">Embedded Systems & IoT Intern</h3>
               <p class="role-desc">Designing microcontroller firmware, sensor integration, ESP32/Arduino automation, and hardware-level C/C++ debugging.</p>
             </div>
@@ -1834,7 +1777,7 @@
 
           <div class="role-card reveal">
             <div>
-              <div class="role-emoji">💻</div>
+              <div class="role-emoji">ðŸ’»</div>
               <h3 class="role-title">Software Engineering Intern</h3>
               <p class="role-desc">Building scalable web applications, REST APIs, relational database schemas, and applying Data Structures in Python/Java/TypeScript.</p>
             </div>
@@ -1848,7 +1791,7 @@
 
           <div class="role-card reveal">
             <div>
-              <div class="role-emoji">🤖</div>
+              <div class="role-emoji">ðŸ¤–</div>
               <h3 class="role-title">AI & Machine Learning Intern</h3>
               <p class="role-desc">Developing predictive analytics engines, multi-agent reasoning systems, and expanding Deep Learning model architectures.</p>
             </div>
@@ -1939,29 +1882,7 @@
 
   <!-- ==================== JAVASCRIPT ==================== -->
   <script>
-    // ===== PRELOADER =====
-    (function() {
-      const preloader = document.getElementById('preloader');
-      const numberEl = document.getElementById('preloader-number');
-      const barEl = document.getElementById('preloader-bar');
-      let count = 0;
-      const interval = setInterval(() => {
-        count += Math.floor(Math.random() * 4) + 1;
-        if (count >= 100) {
-          count = 100;
-          clearInterval(interval);
-          numberEl.textContent = count;
-          barEl.style.width = count + '%';
-          setTimeout(() => {
-            preloader.classList.add('done');
-            document.body.classList.remove('loading');
-          }, 400);
-          return;
-        }
-        numberEl.textContent = count;
-        barEl.style.width = count + '%';
-      }, 30);
-    })();
+
 
     // ===== CUSTOM CURSOR =====
     (function() {
@@ -2032,7 +1953,7 @@
               ctx.beginPath();
               ctx.moveTo(particles[i].x, particles[i].y);
               ctx.lineTo(particles[j].x, particles[j].y);
-              ctx.strokeStyle = `rgba(200, 169, 126, ${0.08 * (1 - dist / 120)})`;
+              ctx.strokeStyle = `rgba(129, 140, 248, ${0.08 * (1 - dist / 120)})`;
               ctx.lineWidth = 0.5;
               ctx.stroke();
             }
@@ -2043,7 +1964,7 @@
         particles.forEach(p => {
           ctx.beginPath();
           ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-          ctx.fillStyle = 'rgba(200, 169, 126, 0.3)';
+          ctx.fillStyle = 'rgba(129, 140, 248, 0.35)';
           ctx.fill();
 
           p.x += p.vx;
