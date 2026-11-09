@@ -9,7 +9,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -550,6 +550,245 @@
       .name-secondary { font-size: 2.8rem; }
       .nav-links { display: none; }
     }
+
+    :root {
+      --bg-dark: #090a09;
+      --bg-card: rgba(20, 20, 18, 0.82);
+      --bg-card-hover: #191916;
+      --border: rgba(211, 183, 126, 0.16);
+      --border-hover: rgba(211, 183, 126, 0.52);
+      --text-main: #f2efe7;
+      --text-muted: #b0ada3;
+      --text-dim: #77746c;
+      --primary: #d3b77e;
+      --primary-glow: rgba(211, 183, 126, 0.2);
+      --cyan: #a7c7b5;
+      --emerald: #9fc5a6;
+      --violet: #d3b77e;
+      --amber: #d98769;
+      --gradient-brand: linear-gradient(110deg, #d3b77e 5%, #f0dfb6 100%);
+      --gradient-accent: linear-gradient(110deg, #a7c7b5, #d3b77e);
+      --font-sans: 'DM Sans', sans-serif;
+      --max-width: 1280px;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      background-image:
+        radial-gradient(ellipse at 77% 12%, rgba(164, 125, 64, 0.13), transparent 34rem),
+        radial-gradient(ellipse at 8% 62%, rgba(103, 137, 115, 0.06), transparent 30rem),
+        linear-gradient(rgba(235, 225, 203, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(235, 225, 203, 0.025) 1px, transparent 1px);
+      background-size: auto, auto, 56px 56px, 56px 56px;
+    }
+
+    .container { max-width: var(--max-width); }
+    .navbar { background: rgba(9, 10, 9, 0.8); border-color: rgba(211, 183, 126, 0.1); }
+    .nav-content { height: 72px; }
+    .logo-box { border-radius: 50%; background: rgba(211, 183, 126, 0.12); color: var(--primary); border: 1px solid rgba(211, 183, 126, 0.48); box-shadow: none; }
+    .brand-name, .project-title, .school-name, .skill-card-title, .role-title { font-family: 'Space Grotesk', sans-serif; }
+    .brand-name, .project-title, .school-name, .skill-card-title, .role-title, .section-title, .contact-val { color: var(--text-main); }
+    .cert-item-card [style*="#fff"], .footer [style*="#fff"] { color: var(--text-main) !important; }
+    .brand-title, .hero-role, .section-tag { color: var(--cyan); }
+    .nav-link { border-radius: 4px; }
+    .nav-link:hover { color: var(--primary); background: rgba(211, 183, 126, 0.08); }
+    .nav-cta { color: var(--primary); background: transparent; border-color: rgba(211, 183, 126, 0.38); border-radius: 4px; }
+    .nav-cta:hover { color: #11100d; background: var(--primary); box-shadow: none; }
+    .menu-toggle {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--text-main);
+      cursor: pointer;
+    }
+    .menu-toggle svg { width: 20px; height: 20px; }
+
+    .hero {
+      min-height: min(820px, calc(100svh - 72px));
+      padding-top: 4rem;
+      padding-bottom: 3rem;
+      grid-template-columns: minmax(0, 1fr) minmax(360px, 0.92fr);
+      gap: 1rem;
+      overflow: hidden;
+    }
+    .hero-left { position: relative; z-index: 2; }
+    .status-badge { border-radius: 2px; background: rgba(211, 183, 126, 0.07); border-color: rgba(211, 183, 126, 0.22); color: var(--primary); text-transform: uppercase; letter-spacing: 0.03em; }
+    .pulse-dot { background: var(--primary); }
+    .hero-title, .name-primary, .name-secondary {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 5rem;
+      line-height: 0.98;
+      letter-spacing: 0;
+    }
+    .hero-title { margin-bottom: 1.2rem; }
+    .name-primary { color: var(--text-main); }
+    .name-secondary { color: var(--primary); background: none; -webkit-text-fill-color: currentColor; }
+    .hero-role { font-size: 0.82rem; letter-spacing: 0.11em; }
+    .hero-description { max-width: 570px; font-size: 1rem; }
+    .hero-description strong { color: var(--text-main); }
+    .btn { border-radius: 4px; }
+    .btn-primary { color: #17140e; background: var(--primary); box-shadow: 0 8px 28px rgba(211, 183, 126, 0.18); }
+    .btn-primary:hover { background: #e2ca96; box-shadow: 0 12px 34px rgba(211, 183, 126, 0.24); }
+    .btn-secondary { color: var(--text-main); background: rgba(255, 255, 255, 0.03); }
+    .btn-secondary, .btn-icon { border-radius: 4px; }
+    .btn-icon:hover { color: var(--primary); }
+    .hero-highlights { min-height: 540px; position: relative; display: block; }
+    .hero-highlights .highlight-card { display: none; }
+    .hero-scene {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      min-height: 540px;
+      display: block;
+      outline: none;
+    }
+    .scene-label {
+      position: absolute;
+      z-index: 1;
+      font: 600 0.68rem/1.4 var(--font-mono);
+      letter-spacing: 0.08em;
+      color: rgba(238, 224, 195, 0.58);
+      pointer-events: none;
+    }
+    .scene-label-top { top: 13%; right: 2%; }
+    .scene-label-bottom { bottom: 8%; left: 5%; color: var(--primary); }
+
+    .section { padding: 6rem 0; border-top: 1px solid rgba(211, 183, 126, 0.1); }
+    .section-header { margin-bottom: 2.5rem; }
+    .section-title { font: 600 3rem/1.04 'Space Grotesk', sans-serif; letter-spacing: 0; }
+    .section-desc { max-width: 650px; }
+    .featured-project-card, .repo-card, .skill-card, .timeline-card, .cert-item-card, .role-card, .contact-tile {
+      border-radius: 5px;
+      background: rgba(18, 18, 16, 0.78);
+      border-color: rgba(211, 183, 126, 0.13);
+    }
+    .featured-project-card { padding: 1.75rem; }
+    .featured-project-card:hover, .repo-card:hover, .skill-card:hover, .contact-tile:hover {
+      border-color: rgba(211, 183, 126, 0.42);
+      box-shadow: 0 18px 42px rgba(0, 0, 0, 0.28);
+    }
+    .project-title { font-size: 1.4rem; }
+    .project-header-flex > div > p { color: var(--cyan) !important; }
+    .type-iot, .type-robotics { border-radius: 3px; }
+    .type-iot { color: #a7c7b5; background: rgba(103, 159, 126, 0.1); border-color: rgba(103, 159, 126, 0.24); }
+    .type-robotics { color: #e1a286; background: rgba(217, 135, 105, 0.1); border-color: rgba(217, 135, 105, 0.24); }
+    .metric-box { border-radius: 3px; background: rgba(211, 183, 126, 0.035); }
+    .metric-value, .repo-name, .arch-label, .cert-link { color: var(--cyan); }
+    .tech-tag, .chip-item { border-radius: 3px; }
+    .repo-card { min-height: 100%; }
+    .arch-label { color: var(--primary); }
+    .skill-card-icon, .contact-icon, .cert-icon-badge { border-radius: 4px; }
+    .icon-code, .icon-ai, .icon-cs, .icon-hw, .contact-icon, .cert-icon-badge { background: rgba(211, 183, 126, 0.09); color: var(--primary); }
+    .chip-item:hover { background: rgba(211, 183, 126, 0.1); border-color: rgba(211, 183, 126, 0.35); }
+    .tag-active { background: rgba(103, 159, 126, 0.14); color: #a7c7b5; }
+    .tag-queued { background: rgba(217, 135, 105, 0.14); color: #e1a286; }
+    .school-degree { color: var(--cyan); }
+    .school-period { color: #a7c7b5; background: rgba(103, 159, 126, 0.1); border-radius: 3px; }
+    .contact-val { font-family: var(--font-sans); overflow-wrap: anywhere; }
+    .footer { border-color: var(--border); }
+    .footer-icon-link { border-radius: 4px; }
+    .scroll-bar { background: var(--gradient-brand); box-shadow: none; height: 2px; }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      max-width: 560px;
+      margin-top: 2.6rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid var(--border);
+    }
+    .hero-stat { display: flex; flex-direction: column; gap: 0.15rem; }
+    .hero-stat + .hero-stat { padding-left: 1.1rem; border-left: 1px solid var(--border); }
+    .hero-stat-value { font: 600 1.35rem/1.2 'Space Grotesk', sans-serif; color: var(--primary); }
+    .hero-stat-label { font: 0.66rem/1.5 var(--font-mono); color: var(--text-dim); text-transform: uppercase; }
+    .section-tag { gap: 0.65rem; }
+    .section-tag::before { content: ''; width: 22px; height: 1px; background: var(--primary); }
+    #projects .section-tag::after { content: '01 /'; color: var(--text-dim); }
+    #skills .section-tag::after { content: '02 /'; color: var(--text-dim); }
+    #education .section-tag::after { content: '03 /'; color: var(--text-dim); }
+    #roles .section-tag::after { content: '04 /'; color: var(--text-dim); }
+    #contact .section-tag::after { content: '05 /'; color: var(--text-dim); }
+    .projects-container { gap: 0; border-top: 1px solid var(--border); }
+    .featured-project-card {
+      padding: 2.15rem 1.5rem 2.15rem 4.1rem;
+      background: transparent;
+      border: 0;
+      border-bottom: 1px solid var(--border);
+      border-radius: 0;
+      box-shadow: none;
+    }
+    .featured-project-card::before {
+      counter-increment: project;
+      content: '0' counter(project);
+      position: absolute;
+      top: 2.2rem;
+      left: 0.3rem;
+      color: var(--primary);
+      font: 500 0.78rem var(--font-mono);
+    }
+    .projects-container { counter-reset: project; }
+    .featured-project-card:hover { transform: none; background: rgba(211, 183, 126, 0.025); box-shadow: none; }
+    .repo-card, .skill-card, .timeline-card, .cert-item-card, .role-card, .contact-tile { box-shadow: none; }
+    .repo-card { background: rgba(18, 18, 16, 0.65); }
+    .repo-card:hover, .skill-card:hover, .contact-tile:hover { transform: translateY(-3px); }
+    .nav-link { color: #b0ada3; }
+    .nav-cta { border-radius: 2px; }
+
+    @media (max-width: 900px) {
+      .hero { min-height: 0; padding-top: 3.5rem; grid-template-columns: 1fr; }
+      .hero-title, .name-primary, .name-secondary { font-size: 3.8rem; }
+      .hero-highlights { min-height: 420px; }
+      .hero-scene { min-height: 420px; }
+      .menu-toggle { display: inline-flex; align-items: center; justify-content: center; }
+      .nav-content { position: relative; }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: calc(100% - 1px);
+        left: 0;
+        right: 0;
+        padding: 0.7rem;
+        background: #11110f;
+        border: 1px solid var(--border);
+        flex-direction: column;
+        gap: 0.15rem;
+      }
+      .nav-links.is-open { display: flex; }
+      .nav-link { display: block; padding: 0.7rem 0.8rem; }
+      .nav-actions { display: flex; align-items: center; gap: 0.55rem; }
+      .nav-cta { padding: 0.55rem 0.75rem; }
+    }
+    @media (max-width: 560px) {
+      .container { padding: 0 1.1rem; }
+      .brand-logo { min-width: 0; flex: 1; }
+      .brand-text { min-width: 0; max-width: 140px; }
+      .brand-name { font-size: 0.76rem; line-height: 1.15; }
+      .brand-title { display: none; }
+      .logo-box { width: 36px; height: 36px; }
+      .nav-cta { white-space: nowrap; font-size: 0.7rem; padding: 0.5rem 0.55rem; }
+      .hero { padding-top: 2.7rem; }
+      .status-badge { font-size: 0.68rem; padding: 0.4rem 0.65rem; }
+      .hero-title, .name-primary { font-size: 2.7rem; }
+      .name-secondary { font-size: 2.25rem; }
+      .hero-highlights { order: -1; min-height: 270px; }
+      .hero-scene { min-height: 270px; }
+      .hero-cta-group { gap: 0.55rem; }
+      .hero-cta-group .btn { padding: 0.72rem 0.95rem; font-size: 0.82rem; }
+      .btn-icon { width: 44px; height: 44px; }
+      .section-title { font-size: 2rem; }
+      .featured-project-card { padding: 2rem 0.4rem 2rem 2.7rem; }
+      .featured-project-card::before { left: 0; }
+      .section { padding: 4rem 0; }
+      .github-repos-grid { grid-template-columns: 1fr; }
+      .footer-content { align-items: flex-start; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+    }
   </style>
 </head>
 <body>
@@ -567,7 +806,7 @@
           <span class="brand-title">Computer Science &amp; Systems Engineer</span>
         </div>
       </a>
-      <ul class="nav-links">
+      <ul class="nav-links" id="navLinks">
         <li><a href="#" class="nav-link">Home</a></li>
         <li><a href="#projects" class="nav-link">Projects</a></li>
         <li><a href="#skills" class="nav-link">Skills</a></li>
@@ -575,7 +814,12 @@
         <li><a href="#certifications" class="nav-link">Certifications</a></li>
         <li><a href="#contact" class="nav-link">Contact</a></li>
       </ul>
-      <a href="#contact" class="nav-cta">Get In Touch &rarr;</a>
+      <div class="nav-actions">
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="navLinks">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
+        </button>
+        <a href="#contact" class="nav-cta">Get In Touch <span aria-hidden="true">&rarr;</span></a>
+      </div>
     </div>
   </header>
 
@@ -595,7 +839,7 @@
         Computer Science student at VIT-AP University specializing in <strong>Embedded Systems (Arduino, ESP32)</strong>, <strong>IoT Hardware Automation</strong>, and <strong>Full-Stack Software Engineering</strong>. Experienced in building autonomous robotics, sensor telemetry systems, and multi-agent AI applications.
       </p>
       <div class="hero-cta-group">
-        <a href="#projects" class="btn btn-primary">Explore Featured Projects &darr;</a>
+        <a href="#projects" class="btn btn-primary">View Selected Work <span aria-hidden="true">&rarr;</span></a>
         
         <!-- GitHub Logo Button -->
         <a href="https://github.com/dheeraj0677" target="_blank" rel="noopener" class="btn-icon btn-icon-github" aria-label="GitHub Profile" title="GitHub Profile">
@@ -607,10 +851,26 @@
           <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
         </a>
       </div>
+      <div class="hero-stats" aria-label="Portfolio highlights">
+        <div class="hero-stat">
+          <span class="hero-stat-value">8.19</span>
+          <span class="hero-stat-label">Current CGPA</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-value">09</span>
+          <span class="hero-stat-label">Projects built</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-value">2028</span>
+          <span class="hero-stat-label">Graduation</span>
+        </div>
+      </div>
     </div>
 
-    <!-- Quick Highlights Right Panel -->
-    <div class="hero-highlights">
+    <div class="hero-highlights" aria-label="Interactive three-dimensional network visualization">
+      <canvas class="hero-scene" id="heroScene" aria-label="A glowing three-dimensional network globe"></canvas>
+      <span class="scene-label scene-label-top">SYSTEMS / IN MOTION</span>
+      <span class="scene-label scene-label-bottom">HARDWARE × SOFTWARE × AI</span>
       <div class="highlight-card">
         <div class="card-meta-title">Institution &amp; Performance</div>
         <div class="card-meta-value">VIT-AP University</div>
@@ -1227,6 +1487,165 @@
       const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
       const scrolled = (winScroll / height) * 100;
       document.getElementById('scrollBar').style.width = scrolled + '%';
+    });
+  </script>
+  <script type="module">
+    import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js';
+
+    const canvas = document.querySelector('#heroScene');
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(35, 1, 0.1, 100);
+    camera.position.set(0, 0.1, 8.4);
+    camera.lookAt(0, 0, 0);
+
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.35;
+
+    scene.add(new THREE.AmbientLight(0xddd4c2, 1.7));
+    const keyLight = new THREE.PointLight(0xffdfaa, 95, 28);
+    keyLight.position.set(3.5, 4, 5);
+    scene.add(keyLight);
+    const rimLight = new THREE.PointLight(0x7fa994, 70, 24);
+    rimLight.position.set(-4, -1, -2);
+    scene.add(rimLight);
+
+    const assembly = new THREE.Group();
+    scene.add(assembly);
+
+    const globe = new THREE.Mesh(
+      new THREE.SphereGeometry(1.55, 64, 48),
+      new THREE.MeshStandardMaterial({ color: 0x25231f, metalness: 0.28, roughness: 0.38, emissive: 0x100e0b })
+    );
+    assembly.add(globe);
+
+    const wireframe = new THREE.Mesh(
+      new THREE.SphereGeometry(1.58, 24, 16),
+      new THREE.MeshBasicMaterial({ color: 0xd3b77e, wireframe: true, transparent: true, opacity: 0.22 })
+    );
+    assembly.add(wireframe);
+
+    const nodePositions = [];
+    const nodeCount = 100;
+    const goldenAngle = Math.PI * (3 - Math.sqrt(5));
+    for (let index = 0; index < nodeCount; index += 1) {
+      const y = 1 - (index / (nodeCount - 1)) * 2;
+      const radius = Math.sqrt(1 - y * y);
+      const angle = goldenAngle * index;
+      nodePositions.push(new THREE.Vector3(Math.cos(angle) * radius * 1.59, y * 1.59, Math.sin(angle) * radius * 1.59));
+    }
+
+    const connections = [];
+    for (let index = 0; index < nodePositions.length; index += 1) {
+      const nearest = nodePositions
+        .map((position, otherIndex) => ({ otherIndex, distance: nodePositions[index].distanceTo(position) }))
+        .filter(candidate => candidate.otherIndex > index && candidate.distance < 0.58)
+        .sort((first, second) => first.distance - second.distance)
+        .slice(0, 3);
+      for (const candidate of nearest) connections.push(nodePositions[index], nodePositions[candidate.otherIndex]);
+    }
+    const networkGeometry = new THREE.BufferGeometry().setFromPoints(connections);
+    const network = new THREE.LineSegments(
+      networkGeometry,
+      new THREE.LineBasicMaterial({ color: 0xd7bf8e, transparent: true, opacity: 0.42 })
+    );
+    assembly.add(network);
+
+    const nodeGeometry = new THREE.BufferGeometry().setFromPoints(nodePositions);
+    const nodes = new THREE.Points(
+      nodeGeometry,
+      new THREE.PointsMaterial({ color: 0xf0d69d, size: 0.045, transparent: true, opacity: 0.9, sizeAttenuation: true })
+    );
+    assembly.add(nodes);
+
+    const orbit = new THREE.Mesh(
+      new THREE.TorusGeometry(2.15, 0.009, 8, 180),
+      new THREE.MeshBasicMaterial({ color: 0xe7d2a8, transparent: true, opacity: 0.5 })
+    );
+    orbit.rotation.set(1.28, 0.15, -0.18);
+    assembly.add(orbit);
+
+    const orbitAccent = new THREE.Mesh(
+      new THREE.TorusGeometry(2.28, 0.006, 6, 180),
+      new THREE.MeshBasicMaterial({ color: 0x9fc5a6, transparent: true, opacity: 0.4 })
+    );
+    orbitAccent.rotation.set(0.4, -0.8, 0.35);
+    assembly.add(orbitAccent);
+
+    const satellites = new THREE.Group();
+    assembly.add(satellites);
+    const satelliteMaterial = new THREE.MeshStandardMaterial({ color: 0xe2bf78, emissive: 0x33200b, metalness: 0.45, roughness: 0.24 });
+    for (let index = 0; index < 4; index += 1) {
+      const angle = (index / 4) * Math.PI * 2;
+      const satellite = new THREE.Mesh(new THREE.SphereGeometry(index === 0 ? 0.09 : 0.055, 16, 12), satelliteMaterial);
+      satellite.position.set(Math.cos(angle) * 2.15, Math.sin(angle * 2) * 0.32, Math.sin(angle) * 2.15);
+      satellites.add(satellite);
+    }
+
+    const starPositions = [];
+    for (let index = 0; index < 180; index += 1) {
+      const x = ((index * 67) % 211) / 35 - 3;
+      const y = ((index * 97) % 197) / 34 - 2.9;
+      const z = -2.5 - ((index * 29) % 100) / 30;
+      starPositions.push(x, y, z);
+    }
+    const starGeometry = new THREE.BufferGeometry();
+    starGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starPositions, 3));
+    const stars = new THREE.Points(starGeometry, new THREE.PointsMaterial({ color: 0xcbb88d, size: 0.018, transparent: true, opacity: 0.6 }));
+    scene.add(stars);
+
+    const pointer = { x: 0, y: 0 };
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const resizeScene = () => {
+      const bounds = canvas.getBoundingClientRect();
+      if (!bounds.width || !bounds.height) return;
+      camera.aspect = bounds.width / bounds.height;
+      camera.position.z = bounds.width < 480 ? 9.5 : 8.4;
+      camera.updateProjectionMatrix();
+      renderer.setSize(bounds.width, bounds.height, false);
+    };
+    const observer = new ResizeObserver(resizeScene);
+    observer.observe(canvas);
+    resizeScene();
+
+    canvas.addEventListener('pointermove', event => {
+      const bounds = canvas.getBoundingClientRect();
+      pointer.x = ((event.clientX - bounds.left) / bounds.width - 0.5) * 2;
+      pointer.y = ((event.clientY - bounds.top) / bounds.height - 0.5) * 2;
+    });
+    canvas.addEventListener('pointerleave', () => { pointer.x = 0; pointer.y = 0; });
+
+    const clock = new THREE.Clock();
+    const render = () => {
+      const time = clock.getElapsedTime();
+      if (!reducedMotion) {
+        assembly.rotation.y += 0.0022;
+        satellites.rotation.y -= 0.004;
+        assembly.position.y = Math.sin(time * 0.8) * 0.08;
+      }
+      assembly.rotation.x += (pointer.y * 0.08 - assembly.rotation.x) * 0.025;
+      assembly.rotation.z += (-pointer.x * 0.08 - assembly.rotation.z) * 0.025;
+      renderer.render(scene, camera);
+      requestAnimationFrame(render);
+    };
+    render();
+
+    const menuToggle = document.querySelector('#menuToggle');
+    const navLinks = document.querySelector('#navLinks');
+    menuToggle.addEventListener('click', () => {
+      const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
+      menuToggle.setAttribute('aria-expanded', String(!isOpen));
+      menuToggle.setAttribute('aria-label', isOpen ? 'Open navigation' : 'Close navigation');
+      navLinks.classList.toggle('is-open', !isOpen);
+    });
+    navLinks.addEventListener('click', event => {
+      if (event.target.closest('a')) {
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.setAttribute('aria-label', 'Open navigation');
+        navLinks.classList.remove('is-open');
+      }
     });
   </script>
 </body>
