@@ -80,52 +80,7 @@
       --rgb-coral: 242, 147, 121;
     }
 
-    /* Palette 2: Cobalt Horizon — Midnight Sapphire, Electric Ice & Violet-Mint */
-    html[data-theme="cobalt"] {
-      color-scheme: dark;
-      --bg: #040814;
-      --bg-elevated: #0b1326;
-      --surface: rgba(12, 20, 40, 0.76);
-      --surface-solid: #0f1932;
-      --surface-hover: rgba(20, 31, 60, 0.9);
-      --border: rgba(125, 211, 252, 0.15);
-      --border-strong: rgba(125, 211, 252, 0.46);
-      --specular: rgba(214, 240, 255, 0.14);
-      --grid-line: rgba(125, 211, 252, 0.036);
-
-      --text: #eef5ff;
-      --text-muted: #9eb0cc;
-      --text-dim: #647593;
-
-      --accent: #7dd3fc;
-      --accent-bright: #bae6fd;
-      --accent-ink: #051024;
-      --accent-soft: rgba(125, 211, 252, 0.12);
-
-      --teal: #34d399;
-      --teal-soft: rgba(52, 211, 153, 0.12);
-      --coral: #c084fc;
-      --coral-soft: rgba(192, 132, 252, 0.13);
-      --azure: #60a5fa;
-      --azure-soft: rgba(96, 165, 250, 0.12);
-
-      --grad-hero: linear-gradient(125deg, #e0f2fe 0%, #7dd3fc 48%, #a78bfa 100%);
-      --grad-border: conic-gradient(from var(--angle, 0deg), transparent 55%, rgba(125, 211, 252, 0.6) 78%, rgba(167, 139, 250, 0.6) 92%, transparent 100%);
-      --nav-bg: rgba(4, 8, 20, 0.82);
-      --code-bg: #050a18;
-      --code-header: #0d162c;
-      --aurora-1: rgba(56, 189, 248, 0.14);
-      --aurora-2: rgba(167, 139, 250, 0.11);
-      --aurora-3: rgba(52, 211, 153, 0.07);
-      --spotlight: rgba(125, 211, 252, 0.1);
-      --shadow-card: 0 24px 60px rgba(2, 6, 20, 0.56);
-      --shadow-glow: 0 12px 36px rgba(125, 211, 252, 0.24);
-      --rgb-accent: 125, 211, 252;
-      --rgb-teal: 52, 211, 153;
-      --rgb-coral: 192, 132, 252;
-    }
-
-    /* Palette 3: Carrara Silk — Editorial Alabaster Porcelain, Antique Bronze & Emerald */
+    /* Light Mode: Carrara Silk — Editorial Alabaster Porcelain, Antique Bronze & Emerald */
     html[data-theme="carrara"] {
       color-scheme: light;
       --bg: #f6f3ec;
@@ -421,32 +376,37 @@
       gap: 0.5rem;
     }
 
-    /* Palette Switcher */
-    .palette-switcher {
+    /* Dark / Light Mode Segmented Switcher */
+    .mode-switcher {
       display: inline-flex;
       align-items: center;
-      gap: 0.22rem;
+      gap: 0.18rem;
       padding: 0.22rem;
       border-radius: 999px;
       border: 1px solid var(--border);
       background: var(--surface);
     }
-    .palette-dot-btn {
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      border: 2px solid transparent;
+    .mode-pill-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.34rem;
+      padding: 0.32rem 0.68rem;
+      border-radius: 999px;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 500;
       cursor: pointer;
-      display: grid;
-      place-items: center;
-      transition: transform 0.2s var(--ease-spring), border-color 0.2s ease;
-      position: relative;
+      transition: all 0.22s ease;
     }
-    .palette-dot-btn:hover { transform: scale(1.12); }
-    .palette-dot-btn.is-active { border-color: var(--text); }
-    .dot-aurum { background: linear-gradient(135deg, #06070a 45%, #e6c888 50%, #4fe3c1 100%); }
-    .dot-cobalt { background: linear-gradient(135deg, #040814 45%, #7dd3fc 50%, #c084fc 100%); }
-    .dot-carrara { background: linear-gradient(135deg, #f6f3ec 45%, #9d6f20 50%, #117a60 100%); }
+    .mode-pill-btn:hover { color: var(--text); }
+    .mode-pill-btn.is-active {
+      background: var(--accent);
+      color: var(--accent-ink);
+      font-weight: 600;
+    }
 
     .cmd-btn {
       display: inline-flex;
@@ -2150,6 +2110,7 @@
       .container { width: calc(100% - 1.75rem); }
       .brand-title { display: none; }
       .nav-cta { display: none; }
+      .mode-pill-btn { padding: 0.28rem 0.52rem; font-size: 0.66rem; }
       .hero-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
       .hero-stat + .hero-stat { border-left: none; padding-left: 0; }
       .case-metrics, .case-breakdown { grid-template-columns: 1fr; }
@@ -2213,10 +2174,15 @@
       </ul>
 
       <div class="nav-actions">
-        <div class="palette-switcher" role="group" aria-label="Choose portfolio color palette">
-          <button type="button" class="palette-dot-btn dot-aurum is-active" data-theme-pick="aurum" title="Aurum Obsidian (Gold &amp; Teal)" aria-label="Aurum Obsidian palette"></button>
-          <button type="button" class="palette-dot-btn dot-cobalt" data-theme-pick="cobalt" title="Cobalt Horizon (Sapphire &amp; Ice)" aria-label="Cobalt Horizon palette"></button>
-          <button type="button" class="palette-dot-btn dot-carrara" data-theme-pick="carrara" title="Carrara Silk (Editorial Light)" aria-label="Carrara Silk light palette"></button>
+        <div class="mode-switcher" role="group" aria-label="Switch color mode">
+          <button type="button" class="mode-pill-btn is-active" data-theme-pick="aurum" title="Dark Mode — Aurum Obsidian" aria-label="Dark Mode (Aurum Obsidian)">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+            <span>Dark</span>
+          </button>
+          <button type="button" class="mode-pill-btn" data-theme-pick="carrara" title="Light Mode — Carrara Silk" aria-label="Light Mode (Carrara Silk)">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+            <span>Light</span>
+          </button>
         </div>
 
         <button class="cmd-btn" id="openCmdBtn" type="button" aria-label="Open quick navigation palette">
@@ -3577,12 +3543,11 @@
       }
 
       /* ----------------------------------------------------------------------
-         3-Palette Switcher (Aurum / Cobalt / Carrara)
+         Dark / Light Mode Switcher (Aurum Obsidian / Carrara Silk)
          ---------------------------------------------------------------------- */
       const THEME_META = {
-        aurum: { color: '#06070a', label: 'Aurum Obsidian' },
-        cobalt: { color: '#040814', label: 'Cobalt Horizon' },
-        carrara: { color: '#f6f3ec', label: 'Carrara Silk' }
+        aurum: { color: '#06070a', label: 'Dark Mode (Aurum Obsidian)' },
+        carrara: { color: '#f6f3ec', label: 'Light Mode (Carrara Silk)' }
       };
       const paletteBtns = Array.from(document.querySelectorAll('[data-theme-pick]'));
 
@@ -4058,9 +4023,8 @@
         { label: 'Inspect TRANA-AI (Multi-Agent)', meta: 'Blueprint', action: () => openCaseModal('trana') },
         { label: 'Inspect CargoSense AI (IoT + ML)', meta: 'Blueprint', action: () => openCaseModal('cargosense') },
         { label: 'Inspect Flame Defender AR-16', meta: 'Blueprint', action: () => openCaseModal('flame') },
-        { label: 'Palette: Aurum Obsidian (Gold & Teal)', meta: 'Theme', action: () => applyTheme('aurum', true) },
-        { label: 'Palette: Cobalt Horizon (Sapphire)', meta: 'Theme', action: () => applyTheme('cobalt', true) },
-        { label: 'Palette: Carrara Silk (Light Luxury)', meta: 'Theme', action: () => applyTheme('carrara', true) },
+        { label: 'Dark Mode: Aurum Obsidian', meta: 'Theme', action: () => applyTheme('aurum', true) },
+        { label: 'Light Mode: Carrara Silk', meta: 'Theme', action: () => applyTheme('carrara', true) },
         { label: 'Lens: Focus AI / ML Interview Fit', meta: 'Recruiter', action: () => { setInterviewerLens('ai'); location.hash = '#projects'; } },
         { label: 'Lens: Focus Full-Stack Interview Fit', meta: 'Recruiter', action: () => { setInterviewerLens('fullstack'); location.hash = '#projects'; } },
         { label: 'Lens: Focus Embedded / IoT Fit', meta: 'Recruiter', action: () => { setInterviewerLens('iot'); location.hash = '#projects'; } },
