@@ -147,7 +147,7 @@
       background-color: var(--bg);
       color: var(--text);
       line-height: 1.65;
-      overflow-x: hidden;
+      overflow-x: clip;
       -webkit-font-smoothing: antialiased;
       transition: background-color 0.35s ease, color 0.35s ease;
     }
@@ -931,12 +931,217 @@
 
     .reveal {
       opacity: 0;
-      transform: translateY(22px) scale(0.985);
-      transition: opacity 0.65s var(--ease-out), transform 0.65s var(--ease-out);
+      transform: translateY(28px) scale(0.955);
+      transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
     }
     .reveal.is-visible {
       opacity: 1;
       transform: translateY(0) scale(1);
+    }
+
+    /* Scroll-Driven Hero Depth Portal & Floating Chapter Rail */
+    .hero-left,
+    .hero-stage {
+      will-change: transform, opacity;
+      transform-origin: center center;
+    }
+
+    .chapter-rail {
+      position: fixed;
+      right: 1.35rem;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 750;
+      display: none;
+      flex-direction: column;
+      gap: 0.7rem;
+      padding: 0.75rem 0.55rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      backdrop-filter: blur(14px);
+    }
+    @media (min-width: 1380px) {
+      .chapter-rail { display: flex; }
+    }
+    .chapter-rail-track {
+      position: absolute;
+      left: 50%;
+      top: 1.1rem;
+      bottom: 1.1rem;
+      width: 1.5px;
+      transform: translateX(-50%);
+      background: var(--border);
+      z-index: 0;
+    }
+    .chapter-rail-fill {
+      width: 100%;
+      height: 0%;
+      background: linear-gradient(to bottom, var(--teal), var(--accent));
+      transition: height 0.12s linear;
+    }
+    .chapter-dot {
+      position: relative;
+      z-index: 1;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: 1.5px solid var(--border-strong);
+      background: var(--bg);
+      cursor: pointer;
+      padding: 0;
+      transition: transform 0.25s var(--ease-spring), background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .chapter-dot:hover { transform: scale(1.28); border-color: var(--accent); }
+    .chapter-dot.is-active {
+      background: var(--accent);
+      border-color: var(--accent);
+      transform: scale(1.25);
+      box-shadow: 0 0 12px rgba(var(--rgb-accent), 0.55);
+    }
+    .chapter-dot::after {
+      content: attr(data-label);
+      position: absolute;
+      right: 22px;
+      top: 50%;
+      transform: translateY(-50%) translateX(6px);
+      padding: 0.24rem 0.58rem;
+      border-radius: 5px;
+      background: var(--surface-solid);
+      border: 1px solid var(--border-strong);
+      color: var(--text);
+      font-family: var(--font-mono);
+      font-size: 0.66rem;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+    .chapter-dot:hover::after {
+      opacity: 1;
+      transform: translateY(-50%) translateX(0);
+    }
+
+    /* Sticky Scrollytelling Flagship Showcase */
+    .scrolly-showcase {
+      display: grid;
+      grid-template-columns: minmax(340px, 0.84fr) minmax(0, 1.16fr);
+      gap: 2rem;
+      align-items: start;
+    }
+    .sticky-inspector {
+      position: sticky;
+      top: calc(var(--nav-height) + 26px);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-strong);
+      background: var(--surface);
+      box-shadow: var(--shadow-card), inset 0 1px 0 var(--specular);
+      backdrop-filter: blur(18px);
+      padding: 1.45rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .sticky-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .sticky-step-label {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: var(--teal);
+      text-transform: uppercase;
+    }
+    .sticky-progress-track {
+      height: 2px;
+      width: 100%;
+      border-radius: 2px;
+      background: var(--border);
+      overflow: hidden;
+    }
+    .sticky-progress-fill {
+      height: 100%;
+      width: 25%;
+      background: linear-gradient(90deg, var(--teal), var(--accent));
+      transition: width 0.35s var(--ease-out);
+    }
+    .sticky-chapters-nav {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.35rem;
+    }
+    .sticky-nav-pill {
+      padding: 0.38rem 0.42rem;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--bg-elevated);
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      text-align: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .sticky-nav-pill:hover { color: var(--text); border-color: var(--border-strong); }
+    .sticky-nav-pill.is-active {
+      background: var(--accent);
+      color: var(--accent-ink);
+      border-color: var(--accent);
+      font-weight: 600;
+    }
+    .sticky-title {
+      font-family: var(--font-display);
+      font-size: 1.24rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.25;
+      transition: opacity 0.25s ease;
+    }
+    .sticky-stack {
+      font-family: var(--font-mono);
+      font-size: 0.73rem;
+      color: var(--teal);
+    }
+    .sticky-diagram-slot {
+      padding: 0.95rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      background: var(--bg-elevated);
+      animation: code-fade 0.3s ease;
+    }
+    @media (min-width: 1081px) {
+      .scrolly-showcase .case-card {
+        grid-template-columns: 1fr;
+      }
+      .scrolly-showcase .case-card.is-visible {
+        opacity: 0.74;
+        transform: scale(0.985);
+      }
+      .scrolly-showcase .case-card.is-visible.is-chapter-active {
+        opacity: 1;
+        transform: scale(1);
+        border-color: var(--border-strong);
+        box-shadow: var(--shadow-card), inset 3px 0 0 var(--accent), inset 0 1px 0 var(--specular);
+      }
+      .scrolly-showcase .case-card.is-visible.is-lens-dimmed {
+        opacity: 0.45;
+      }
+      .scrolly-showcase .case-diagram-panel {
+        display: none;
+      }
+    }
+    @media (max-width: 1080px) {
+      .scrolly-showcase { grid-template-columns: 1fr; }
+      .sticky-inspector { display: none; }
     }
 
     .spotlight-card {
@@ -2134,9 +2339,11 @@
     }
 
     @media print {
-      .ambient-backdrop, .cursor-aura, .navbar, .scroll-bar, .hero-stage, .marquee-band, .cmd-btn, .back-top-btn, .toast, .composer-card, .inspect-btn, .filter-bar, .repo-search-box, .archive-footer-actions {
+      .ambient-backdrop, .cursor-aura, .navbar, .scroll-bar, .hero-stage, .marquee-band, .chapter-rail, .sticky-inspector, .cmd-btn, .back-top-btn, .toast, .composer-card, .inspect-btn, .filter-bar, .repo-search-box, .archive-footer-actions {
         display: none !important;
       }
+      .scrolly-showcase { display: block !important; }
+      .scrolly-showcase .case-card { opacity: 1 !important; transform: none !important; }
       body { background: #fff !important; color: #111 !important; }
       .section { padding: 1.5rem 0; border-color: #ddd; }
     }
@@ -2152,6 +2359,20 @@
 
   <a href="#mainContent" class="skip-link">Skip to main content</a>
   <div class="scroll-bar" id="scrollBar" aria-hidden="true"></div>
+
+  <!-- Floating Scroll Chapter Rail (Desktop Wide) -->
+  <nav class="chapter-rail" id="chapterRail" aria-label="Scroll chapter progress">
+    <div class="chapter-rail-track" aria-hidden="true">
+      <div class="chapter-rail-fill" id="chapterRailFill"></div>
+    </div>
+    <button type="button" class="chapter-dot is-active" data-rail="top" data-label="00 Overview" aria-label="Jump to Overview"></button>
+    <button type="button" class="chapter-dot" data-rail="projects" data-label="01 Flagship Systems" aria-label="Jump to Flagship Systems"></button>
+    <button type="button" class="chapter-dot" data-rail="archiveSection" data-label="02 38+ Repo Archive" aria-label="Jump to Archive"></button>
+    <button type="button" class="chapter-dot" data-rail="skills" data-label="03 Stack &amp; Terminal" aria-label="Jump to Skills"></button>
+    <button type="button" class="chapter-dot" data-rail="education" data-label="04 Credentials" aria-label="Jump to Credentials"></button>
+    <button type="button" class="chapter-dot" data-rail="roles" data-label="05 Target Roles" aria-label="Jump to Roles"></button>
+    <button type="button" class="chapter-dot" data-rail="contact" data-label="06 Connect" aria-label="Jump to Contact"></button>
+  </nav>
 
   <!-- Navigation -->
   <header class="navbar">
@@ -2367,10 +2588,37 @@
           </div>
         </div>
 
-        <div class="featured-list">
+        <div class="scrolly-showcase" id="scrollyShowcase">
+          <!-- Sticky Live Project Architecture Viewport -->
+          <aside class="sticky-inspector" id="stickyInspector" aria-label="Active flagship system schematic">
+            <div class="sticky-top">
+              <span class="sticky-step-label" id="stickyChapterBadge">Chapter 01 / 04</span>
+              <span class="badge badge-ai" id="stickyDomainBadge">Explainable AI &amp; Web3</span>
+            </div>
+            <div class="sticky-progress-track" aria-hidden="true">
+              <div class="sticky-progress-fill" id="stickyProgressFill"></div>
+            </div>
+            <div class="sticky-chapters-nav" role="tablist" aria-label="Jump to flagship project chapter">
+              <button type="button" class="sticky-nav-pill is-active" data-jump-chapter="0">01 Authentix</button>
+              <button type="button" class="sticky-nav-pill" data-jump-chapter="1">02 TRANA-AI</button>
+              <button type="button" class="sticky-nav-pill" data-jump-chapter="2">03 Cargo</button>
+              <button type="button" class="sticky-nav-pill" data-jump-chapter="3">04 AR-16</button>
+            </div>
+            <div>
+              <h3 class="sticky-title" id="stickyProjectTitle">Authentix &mdash; DeepFake Detection &amp; Blockchain Provenance</h3>
+              <p class="sticky-stack" id="stickyProjectStack" style="margin-top:0.35rem;">Python &bull; TensorFlow EfficientNetB0 &bull; Grad-CAM XAI &bull; FastAPI &bull; React 18 &bull; Ethereum Hardhat</p>
+            </div>
+            <div class="sticky-diagram-slot" id="stickyDiagramSlot"></div>
+            <div class="case-actions-row">
+              <button type="button" class="inspect-btn" id="stickyInspectBtn">Inspect Full Blueprint &rarr;</button>
+              <a href="https://github.com/dheeraj0677/Authentix" target="_blank" rel="noopener" class="repo-ext-btn" id="stickyRepoLink">GitHub &nearr;</a>
+            </div>
+          </aside>
+
+          <div class="featured-list">
 
           <!-- Case 01: Authentix -->
-          <article class="case-card spotlight-card reveal" data-lens="ai fullstack">
+          <article class="case-card spotlight-card is-chapter-active reveal" data-lens="ai fullstack" data-chapter="0" data-case-key="authentix" data-domain="Explainable AI &amp; Web3" data-repo="https://github.com/dheeraj0677/Authentix">
             <div>
               <div class="case-top">
                 <span class="case-num">CASE 01</span>
@@ -2445,7 +2693,7 @@
           </article>
 
           <!-- Case 02: TRANA-AI -->
-          <article class="case-card spotlight-card reveal" data-lens="ai fullstack">
+          <article class="case-card spotlight-card reveal" data-lens="ai fullstack" data-chapter="1" data-case-key="trana" data-domain="Multi-Agent Intelligence" data-repo="https://github.com/dheeraj0677/TRANA-AI-">
             <div>
               <div class="case-top">
                 <span class="case-num">CASE 02</span>
@@ -2517,7 +2765,7 @@
           </article>
 
           <!-- Case 03: CargoSense AI -->
-          <article class="case-card spotlight-card reveal" data-lens="ai iot fullstack">
+          <article class="case-card spotlight-card reveal" data-lens="ai iot fullstack" data-chapter="2" data-case-key="cargosense" data-domain="IoT Telemetry × ML" data-repo="https://github.com/dheeraj0677/cargo-sense-ai">
             <div>
               <div class="case-top">
                 <span class="case-num">CASE 03</span>
@@ -2591,7 +2839,7 @@
           </article>
 
           <!-- Case 04: Flame Defender AR-16 -->
-          <article class="case-card spotlight-card reveal" data-lens="iot">
+          <article class="case-card spotlight-card reveal" data-lens="iot" data-chapter="3" data-case-key="flame" data-domain="Embedded Robotics" data-repo="">
             <div>
               <div class="case-top">
                 <span class="case-num">CASE 04</span>
@@ -2663,10 +2911,11 @@
             </div>
           </article>
 
+          </div>
         </div>
 
         <!-- Complete Engineering & Open Source Archive -->
-        <div class="archive-header reveal">
+        <div class="archive-header reveal" id="archiveSection">
           <div style="width:100%;">
             <div class="section-tag" style="margin-bottom:0.35rem;">Open Source &amp; Hardware Catalog</div>
             <div style="display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:0.75rem; margin-bottom:1.1rem;">
@@ -3677,43 +3926,199 @@
       navLinks.addEventListener('click', (e) => { if (e.target.closest('a')) setMenuOpen(false); });
 
       /* ----------------------------------------------------------------------
-         Scroll Progress, Back-to-Top & Active Section Spy
+         Scroll Engine: Dive-In Depth Portal, Sticky Scrollytelling & Chapter Rail
          ---------------------------------------------------------------------- */
       const scrollBar = document.getElementById('scrollBar');
       const backTopBtn = document.getElementById('backTopBtn');
+      const heroEl = document.getElementById('top');
+      const heroLeftEl = heroEl ? heroEl.querySelector('.hero-left') : null;
+      const heroStageEl = heroEl ? heroEl.querySelector('.hero-stage') : null;
+      const auroraOrbs = Array.from(document.querySelectorAll('.aurora-orb'));
+
       const spySections = ['top', 'projects', 'skills', 'education', 'roles', 'contact']
         .map((id) => document.getElementById(id))
         .filter(Boolean);
       const navItems = Array.from(document.querySelectorAll('.nav-link[data-nav]'));
 
-      function handleScroll() {
+      const railDots = Array.from(document.querySelectorAll('.chapter-dot[data-rail]'));
+      const railFill = document.getElementById('chapterRailFill');
+      const railTargets = railDots.map((d) => document.getElementById(d.dataset.rail)).filter(Boolean);
+
+      railDots.forEach((dot) => {
+        dot.addEventListener('click', () => {
+          const target = document.getElementById(dot.dataset.rail);
+          if (target) target.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth' });
+        });
+      });
+
+      /* Sticky Project Scrollytelling State */
+      const chapterCards = Array.from(document.querySelectorAll('.case-card[data-chapter]'));
+      const stickyChapterBadge = document.getElementById('stickyChapterBadge');
+      const stickyDomainBadge = document.getElementById('stickyDomainBadge');
+      const stickyProgressFill = document.getElementById('stickyProgressFill');
+      const stickyProjectTitle = document.getElementById('stickyProjectTitle');
+      const stickyProjectStack = document.getElementById('stickyProjectStack');
+      const stickyDiagramSlot = document.getElementById('stickyDiagramSlot');
+      const stickyInspectBtn = document.getElementById('stickyInspectBtn');
+      const stickyRepoLink = document.getElementById('stickyRepoLink');
+      const stickyNavPills = Array.from(document.querySelectorAll('[data-jump-chapter]'));
+
+      let activeChapterIdx = -1;
+      let activeCaseKey = 'authentix';
+      let heroZoomProgress = 0;
+
+      function setStickyChapter(idx) {
+        if (idx === activeChapterIdx || !chapterCards[idx]) return;
+        activeChapterIdx = idx;
+        const card = chapterCards[idx];
+        chapterCards.forEach((c, i) => c.classList.toggle('is-chapter-active', i === idx));
+        stickyNavPills.forEach((p) => p.classList.toggle('is-active', Number(p.dataset.jumpChapter) === idx));
+
+        const titleEl = card.querySelector('.case-title');
+        const stackEl = card.querySelector('.case-stack-line');
+        const svgEl = card.querySelector('.schematic-svg');
+        const domain = card.dataset.domain || 'Engineering System';
+        const repo = card.dataset.repo || '';
+        activeCaseKey = card.dataset.caseKey || 'authentix';
+
+        if (stickyChapterBadge) stickyChapterBadge.textContent = `Chapter 0${idx + 1} / 0${chapterCards.length}`;
+        if (stickyDomainBadge) {
+          stickyDomainBadge.textContent = domain;
+          stickyDomainBadge.className = `badge ${idx < 2 ? 'badge-ai' : 'badge-robotics'}`;
+        }
+        if (stickyProgressFill) stickyProgressFill.style.width = `${((idx + 1) / chapterCards.length) * 100}%`;
+        if (stickyProjectTitle && titleEl) stickyProjectTitle.textContent = titleEl.textContent;
+        if (stickyProjectStack && stackEl) stickyProjectStack.textContent = stackEl.textContent;
+        if (stickyDiagramSlot && svgEl) {
+          stickyDiagramSlot.innerHTML = '';
+          stickyDiagramSlot.appendChild(svgEl.cloneNode(true));
+        }
+        if (stickyRepoLink) {
+          if (repo) {
+            stickyRepoLink.href = repo;
+            stickyRepoLink.style.display = 'inline-flex';
+          } else {
+            stickyRepoLink.style.display = 'none';
+          }
+        }
+      }
+
+      stickyNavPills.forEach((pill) => {
+        pill.addEventListener('click', () => {
+          const idx = Number(pill.dataset.jumpChapter);
+          const card = chapterCards[idx];
+          if (card) {
+            card.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'center' });
+          }
+        });
+      });
+
+      if (stickyInspectBtn) {
+        stickyInspectBtn.addEventListener('click', () => openCaseModal(activeCaseKey));
+      }
+      setStickyChapter(0);
+
+      let scrollTicking = false;
+      function updateScrollEffects() {
+        scrollTicking = false;
         const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        const vh = window.innerHeight || 800;
         const maxScroll = Math.max(1, document.documentElement.scrollHeight - document.documentElement.clientHeight);
-        scrollBar.style.width = `${Math.min(100, (scrollTop / maxScroll) * 100)}%`;
+        const pct = Math.min(100, (scrollTop / maxScroll) * 100);
+
+        scrollBar.style.width = `${pct}%`;
+        if (railFill) railFill.style.height = `${pct}%`;
         backTopBtn.classList.toggle('is-visible', scrollTop > 460);
 
+        /* Navbar spy */
         let activeId = 'top';
         const marker = scrollTop + 180;
         for (const sec of spySections) {
           if (sec.offsetTop <= marker) activeId = sec.id;
         }
         navItems.forEach((link) => link.classList.toggle('is-active', link.dataset.nav === activeId));
+
+        /* Chapter rail spy */
+        let activeRailId = 'top';
+        const railMarker = scrollTop + vh * 0.36;
+        for (const el of railTargets) {
+          if (el.getBoundingClientRect().top + scrollTop <= railMarker) activeRailId = el.id;
+        }
+        railDots.forEach((d) => d.classList.toggle('is-active', d.dataset.rail === activeRailId));
+
+        /* Hero dive-in depth portal */
+        if (!reducedMotion && heroEl && heroLeftEl && heroStageEl) {
+          const heroH = Math.max(420, heroEl.offsetHeight);
+          const p = Math.max(0, Math.min(1, scrollTop / (heroH * 0.9)));
+          heroZoomProgress = p;
+          if (window.innerWidth > 920) {
+            const leftScale = 1 - p * 0.045;
+            const stageScale = 1 + p * 0.065;
+            const leftOpacity = Math.max(0.18, 1 - p * 0.88);
+            const stageOpacity = Math.max(0.22, 1 - p * 0.82);
+            heroLeftEl.style.transform = `translate3d(0, ${(-p * 36).toFixed(1)}px, 0) scale(${leftScale.toFixed(3)})`;
+            heroLeftEl.style.opacity = leftOpacity.toFixed(3);
+            heroStageEl.style.transform = `translate3d(0, ${(-p * 20).toFixed(1)}px, 0) scale(${stageScale.toFixed(3)})`;
+            heroStageEl.style.opacity = stageOpacity.toFixed(3);
+          } else {
+            heroLeftEl.style.transform = '';
+            heroLeftEl.style.opacity = '';
+            heroStageEl.style.transform = '';
+            heroStageEl.style.opacity = '';
+          }
+        }
+
+        /* Subtle aurora parallax */
+        if (!reducedMotion && auroraOrbs.length) {
+          auroraOrbs.forEach((orb, idx) => {
+            const speed = (idx + 1) * 0.035;
+            orb.style.marginTop = `${(-scrollTop * speed).toFixed(1)}px`;
+          });
+        }
+
+        /* Active flagship chapter detection */
+        if (chapterCards.length) {
+          const focusY = vh * 0.44;
+          let bestIdx = 0;
+          let bestDist = Infinity;
+          chapterCards.forEach((card, i) => {
+            const r = card.getBoundingClientRect();
+            const center = r.top + r.height * 0.5;
+            const dist = Math.abs(center - focusY);
+            if (dist < bestDist) {
+              bestDist = dist;
+              bestIdx = i;
+            }
+          });
+          setStickyChapter(bestIdx);
+        }
       }
-      window.addEventListener('scroll', handleScroll, { passive: true });
-      handleScroll();
+
+      window.addEventListener('scroll', () => {
+        if (!scrollTicking) {
+          scrollTicking = true;
+          requestAnimationFrame(updateScrollEffects);
+        }
+      }, { passive: true });
+      updateScrollEffects();
       backTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: reducedMotion ? 'auto' : 'smooth' }));
 
       /* ----------------------------------------------------------------------
-         Staggered IntersectionObserver Reveals
+         Staggered Wave IntersectionObserver Reveals
          ---------------------------------------------------------------------- */
       const revealEls = Array.from(document.querySelectorAll('.reveal'));
       if (reducedMotion || !('IntersectionObserver' in window)) {
         revealEls.forEach((el) => el.classList.add('is-visible'));
       } else {
+        let waveIdx = 0;
         const revealObs = new IntersectionObserver((entries, obs) => {
           entries.forEach((entry) => {
             if (!entry.isIntersecting) return;
+            const delay = (waveIdx % 4) * 55;
+            waveIdx += 1;
+            entry.target.style.transitionDelay = `${delay}ms`;
             entry.target.classList.add('is-visible');
+            setTimeout(() => { entry.target.style.transitionDelay = ''; }, delay + 750);
             obs.unobserve(entry.target);
           });
         }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
@@ -3746,16 +4151,19 @@
 
       function setInterviewerLens(roleKey) {
         lensBtns.forEach((b) => b.classList.toggle('is-active', b.dataset.roleLens === roleKey));
-        featuredCards.forEach((card) => {
+        let firstMatchIdx = -1;
+        featuredCards.forEach((card, i) => {
           const matches = (card.dataset.lens || '').split(/\s+/);
           if (roleKey === 'all') {
             card.classList.remove('is-lens-match', 'is-lens-dimmed');
           } else {
             const isMatch = matches.includes(roleKey);
+            if (isMatch && firstMatchIdx === -1) firstMatchIdx = i;
             card.classList.toggle('is-lens-match', isMatch);
             card.classList.toggle('is-lens-dimmed', !isMatch);
           }
         });
+        setStickyChapter(roleKey === 'all' ? 0 : Math.max(0, firstMatchIdx));
         const archiveFilterBtn = document.querySelector(`.filter-btn[data-filter="${roleKey}"]`);
         if (archiveFilterBtn) archiveFilterBtn.click();
       }
@@ -4263,7 +4671,8 @@
 
         const cx = width * 0.5;
         const cy = height * 0.52;
-        const radius = Math.min(width, height) * 0.32;
+        const zoomFactor = reducedMotion ? 1 : 1 + heroZoomProgress * 0.34;
+        const radius = Math.min(width, height) * 0.32 * zoomFactor;
         const tSec = (time || 0) * 0.001;
 
         // Ambient core energy halo
