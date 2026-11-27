@@ -69,6 +69,13 @@
       --nav-bg: rgba(6, 7, 10, 0.8);
       --code-bg: #080a0f;
       --code-header: #10131c;
+      --code-text: #ece8de;
+      --code-tab-muted: #9e9ea8;
+      --tok-kw: #f29379;
+      --tok-fn: #e6c888;
+      --tok-str: #4fe3c1;
+      --tok-num: #7bb8ff;
+      --tok-cmt: #7f8496;
       --aurora-1: rgba(230, 200, 136, 0.13);
       --aurora-2: rgba(79, 227, 193, 0.09);
       --aurora-3: rgba(123, 184, 255, 0.06);
@@ -112,8 +119,15 @@
       --grad-hero: linear-gradient(125deg, #7c5412 0%, #a87621 52%, #117a60 100%);
       --grad-border: conic-gradient(from var(--angle, 0deg), transparent 55%, rgba(157, 111, 32, 0.55) 78%, rgba(17, 122, 96, 0.5) 92%, transparent 100%);
       --nav-bg: rgba(246, 243, 236, 0.88);
-      --code-bg: #141518;
-      --code-header: #1d1f24;
+      --code-bg: #fffdf9;
+      --code-header: #f1ece0;
+      --code-text: #1c1b18;
+      --code-tab-muted: #6e695e;
+      --tok-kw: #b94e2c;
+      --tok-fn: #8f6216;
+      --tok-str: #0e7259;
+      --tok-num: #1d6498;
+      --tok-cmt: #7c776c;
       --aurora-1: rgba(184, 132, 42, 0.12);
       --aurora-2: rgba(17, 122, 96, 0.08);
       --aurora-3: rgba(29, 100, 152, 0.05);
@@ -1781,7 +1795,7 @@
       gap: 0.75rem;
       padding: 0.75rem 1.15rem;
       background: var(--code-header);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      border-bottom: 1px solid var(--border);
     }
     .code-header-left { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
     .code-dots { display: flex; gap: 0.38rem; }
@@ -1796,47 +1810,92 @@
       border-radius: 5px;
       border: 1px solid transparent;
       background: transparent;
-      color: #9e9ea8;
+      color: var(--code-tab-muted);
       font-family: var(--font-mono);
       font-size: 0.73rem;
       cursor: pointer;
       transition: all 0.2s ease;
     }
-    .code-tab:hover { color: #f5f2ea; }
+    .code-tab:hover { color: var(--text); }
     .code-tab.is-active {
-      color: #f8e5b9;
-      background: rgba(230, 200, 136, 0.14);
-      border-color: rgba(230, 200, 136, 0.32);
+      color: var(--accent);
+      background: var(--accent-soft);
+      border-color: var(--border-strong);
+      font-weight: 600;
     }
     .code-copy-btn {
       padding: 0.3rem 0.7rem;
       border-radius: 5px;
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      background: rgba(255, 255, 255, 0.05);
-      color: #dcd8ce;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text-muted);
       font-family: var(--font-mono);
       font-size: 0.72rem;
       cursor: pointer;
       transition: all 0.2s ease;
     }
-    .code-copy-btn:hover { border-color: #e6c888; color: #e6c888; }
+    .code-copy-btn:hover { border-color: var(--border-strong); color: var(--accent); background: var(--accent-soft); }
     .code-body {
       padding: 1.35rem 1.5rem;
       font-family: var(--font-mono);
       font-size: 0.81rem;
       line-height: 1.7;
-      color: #ece8de;
+      color: var(--code-text);
       overflow-x: auto;
       margin: 0;
     }
     .code-panel { display: none; }
     .code-panel.is-active { display: block; animation: code-fade 0.25s ease; }
     @keyframes code-fade { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
-    .tok-kw { color: #f29379; font-weight: 600; }
-    .tok-fn { color: #e6c888; }
-    .tok-str { color: #4fe3c1; }
-    .tok-num { color: #7bb8ff; }
-    .tok-cmt { color: #7f8496; font-style: italic; }
+    .tok-kw { color: var(--tok-kw); font-weight: 600; }
+    .tok-fn { color: var(--tok-fn); }
+    .tok-str { color: var(--tok-str); }
+    .tok-num { color: var(--tok-num); }
+    .tok-cmt { color: var(--tok-cmt); font-style: italic; }
+
+    /* Scroll-Linked Horizontal Parallax Tech Stream */
+    .scroll-stream-band {
+      border-block: 1px solid var(--border);
+      background: var(--bg-elevated);
+      padding: 0.82rem 0;
+      overflow: hidden;
+      mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+    }
+    .scroll-stream-track {
+      display: flex;
+      width: max-content;
+      gap: 1.8rem;
+      will-change: transform;
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      color: var(--text-muted);
+    }
+    .scroll-stream-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.28rem 0.72rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      white-space: nowrap;
+    }
+    .scroll-stream-pill strong { color: var(--accent); }
+
+    /* Scroll-Driven Timeline Line */
+    .timeline-progress-line {
+      position: absolute;
+      left: 7px;
+      top: 1.4rem;
+      width: 2px;
+      height: 0%;
+      max-height: calc(100% - 2.8rem);
+      background: linear-gradient(to bottom, var(--teal), var(--accent));
+      border-radius: 2px;
+      z-index: 0;
+      transition: height 0.14s linear;
+    }
 
     /* ==========================================================================
        EDUCATION, HACKATHONS & VERIFIED CREDENTIALS
@@ -2919,15 +2978,15 @@
           <div style="width:100%;">
             <div class="section-tag" style="margin-bottom:0.35rem;">Open Source &amp; Hardware Catalog</div>
             <div style="display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:0.75rem; margin-bottom:1.1rem;">
-              <h3 class="subsection-title">Engineering Portfolio Archive <span style="color:var(--text-dim); font-family:var(--font-mono); font-size:0.9rem; font-weight:500;" id="repoCountBadge">(9 of 15)</span></h3>
+              <h3 class="subsection-title">Engineering Portfolio Archive <span style="color:var(--text-dim); font-family:var(--font-mono); font-size:0.9rem; font-weight:500;" id="repoCountBadge">(9 of 37)</span></h3>
               <a href="https://github.com/dheeraj0677?tab=repositories" target="_blank" rel="noopener" class="cert-link" style="margin-top:0;">View all 38 repositories on GitHub &nearr;</a>
             </div>
             <div class="archive-controls">
               <div class="filter-bar" role="group" aria-label="Filter projects by domain">
-                <button type="button" class="filter-btn is-active" data-filter="all">All (15)</button>
+                <button type="button" class="filter-btn is-active" data-filter="all">All (37)</button>
                 <button type="button" class="filter-btn" data-filter="pinned">GitHub Pinned (5)</button>
-                <button type="button" class="filter-btn" data-filter="ai">AI &amp; XAI (6)</button>
-                <button type="button" class="filter-btn" data-filter="fullstack">Full-Stack &amp; Mobile (7)</button>
+                <button type="button" class="filter-btn" data-filter="ai">AI &amp; XAI (17)</button>
+                <button type="button" class="filter-btn" data-filter="fullstack">Full-Stack &amp; Mobile (20)</button>
                 <button type="button" class="filter-btn" data-filter="iot">Hardware &amp; Robotics (2)</button>
               </div>
               <div class="repo-search-box">
@@ -3243,10 +3302,27 @@
         </div>
 
         <div class="archive-footer-actions reveal">
-          <button type="button" class="btn btn-secondary" id="toggleArchiveBtn">Show All 15 Builds (+6)</button>
+          <button type="button" class="btn btn-secondary" id="toggleArchiveBtn">Show All 37 Archive Builds (+28)</button>
         </div>
       </div>
     </section>
+
+    <!-- Scroll-Linked Horizontal Parallax Telemetry Stream -->
+    <div class="scroll-stream-band" aria-hidden="true">
+      <div class="scroll-stream-track" id="scrollStreamTrack">
+        <span class="scroll-stream-pill"><strong>38</strong> Public GitHub Repos</span>
+        <span class="scroll-stream-pill"><strong>Python</strong> TensorFlow &bull; FastAPI &bull; SHAP</span>
+        <span class="scroll-stream-pill"><strong>TypeScript</strong> React 19 &bull; Node.js &bull; Express</span>
+        <span class="scroll-stream-pill"><strong>Embedded</strong> ESP32 &bull; Arduino &bull; MPU6050</span>
+        <span class="scroll-stream-pill"><strong>Mobile &amp; GIS</strong> Flutter &bull; PostGIS &bull; Firebase</span>
+        <span class="scroll-stream-pill"><strong>Web3</strong> Hedera HCDA &bull; Ethereum Hardhat</span>
+        <span class="scroll-stream-pill"><strong>618+</strong> Automated Tests Shipped</span>
+        <span class="scroll-stream-pill"><strong>38</strong> Public GitHub Repos</span>
+        <span class="scroll-stream-pill"><strong>Python</strong> TensorFlow &bull; FastAPI &bull; SHAP</span>
+        <span class="scroll-stream-pill"><strong>TypeScript</strong> React 19 &bull; Node.js &bull; Express</span>
+        <span class="scroll-stream-pill"><strong>Embedded</strong> ESP32 &bull; Arduino &bull; MPU6050</span>
+      </div>
+    </div>
 
     <!-- Skills & Live Blueprints -->
     <section class="section" id="skills">
@@ -3405,7 +3481,8 @@
           </div>
         </div>
 
-        <div class="timeline-container">
+        <div class="timeline-container" id="educationTimeline">
+          <div class="timeline-progress-line" id="timelineProgressLine" aria-hidden="true"></div>
           <div class="timeline-card reveal">
             <div>
               <h3 class="school-name">VIT - AP University, Amaravati</h3>
@@ -4068,12 +4145,24 @@
           }
         }
 
-        /* Subtle aurora parallax */
+        /* Subtle aurora parallax + horizontal scroll-linked stream + timeline draw */
         if (!reducedMotion && auroraOrbs.length) {
           auroraOrbs.forEach((orb, idx) => {
             const speed = (idx + 1) * 0.035;
             orb.style.marginTop = `${(-scrollTop * speed).toFixed(1)}px`;
           });
+        }
+        const scrollStreamTrack = document.getElementById('scrollStreamTrack');
+        if (!reducedMotion && scrollStreamTrack) {
+          const shift = (scrollTop * 0.14) % 620;
+          scrollStreamTrack.style.transform = `translate3d(${-shift.toFixed(1)}px, 0, 0)`;
+        }
+        const timelineEl = document.getElementById('educationTimeline');
+        const timelineLine = document.getElementById('timelineProgressLine');
+        if (timelineEl && timelineLine) {
+          const rect = timelineEl.getBoundingClientRect();
+          const prog = Math.max(0, Math.min(1, (vh * 0.65 - rect.top) / Math.max(120, rect.height)));
+          timelineLine.style.height = `${(prog * 100).toFixed(1)}%`;
         }
 
         /* Active flagship chapter detection */
@@ -4173,8 +4262,67 @@
       });
 
       /* ----------------------------------------------------------------------
-         Engineering Archive Filtering, Search & Expand Toggle
+         Hydrate Complete GitHub Archive (All 38 Public Repos Covered) + Filtering
          ---------------------------------------------------------------------- */
+      const EXTRA_GITHUB_REPOS = [
+        { name: 'ET-AI-Hackathon', url: 'https://github.com/dheeraj0677/ET-AI-Hackathon', cat: 'Enterprise AI', tags: 'ai fullstack', lang: 'TypeScript', color: '#3178c6', desc: 'AI EPC Project Intelligence Platform for Data Centre Construction unifying specs, schedules, and quality records.', a1: ['Frontend', 'TypeScript / React UI'], a2: ['Domain', 'Data Centre EPC'], a3: ['Engine', 'Document Intelligence'] },
+        { name: 'FanPulse (Prompt-wars-4)', url: 'https://github.com/dheeraj0677/Prompt-wars-4-', cat: 'GenAI Ops', tags: 'ai fullstack', lang: 'HTML / JS', color: '#e34c26', desc: 'GenAI-powered FIFA World Cup 2026 stadium operations & fan experience platform turning fan queries into ops signals.', a1: ['Vertical', 'Stadium Ops Assistant'], a2: ['AI Layer', 'GenAI Signal Routing'], a3: ['UI', 'Interactive Web App'] },
+        { name: 'Hack2Hire', url: 'https://github.com/dheeraj0677/Hack2Hire', cat: 'Gemini AI', tags: 'ai', lang: 'Python', color: '#3572A5', desc: 'AI-driven mock interview platform using Google Gemini to analyze resumes and run dynamic technical interviews.', a1: ['AI Engine', 'Google Gemini LLM'], a2: ['Input', 'Dynamic Resume Parser'], a3: ['Event', 'Unstop Hack2Hire'] },
+        { name: 'MedPredict (Disease-predictor)', url: 'https://github.com/dheeraj0677/Disease-predictor', cat: 'SHAP + LIME XAI', tags: 'ai', lang: 'Python', color: '#3572A5', desc: 'Explainable AI disease prediction system pairing ML classification with transparent SHAP and LIME explanations.', a1: ['ML', 'Scikit-Learn Pipeline'], a2: ['XAI', 'SHAP + LIME'], a3: ['Domain', 'Clinical Triage'] },
+        { name: 'HEALTH-SAFE-MONITOR', url: 'https://github.com/dheeraj0677/HEALTH-SAFE-MONITOR', cat: 'CV + GIS', tags: 'ai fullstack', lang: 'TypeScript', color: '#3178c6', desc: 'AI-powered verification of Tobacco-Free Schools for Andhra Pradesh Gov using Computer Vision, OCR, and GIS.', a1: ['Vision', 'CV + OCR Pipeline'], a2: ['Spatial', 'GIS Compliance Map'], a3: ['Deploy', 'Docker Compose'] },
+        { name: 'Webcam-Recorded-Video-Input-Module', url: 'https://github.com/dheeraj0677/Webcam-Recorded-Video-Input-Module', cat: 'Space HAR', tags: 'ai', lang: 'Python', color: '#3572A5', desc: 'Mission-grade video ingestion & telemetry module for Space Experiment Human Activity Recognition (SIH).', a1: ['Pipeline', 'HAR Video Ingestion'], a2: ['Telemetry', 'Real-Time Stream'], a3: ['Hackathon', 'SIH Space Track'] },
+        { name: 'Quantra AI Stock Analyzer', url: 'https://github.com/dheeraj0677/Quantra-AI-Stock-Market-Analyzer', cat: 'Quant AI', tags: 'ai', lang: 'Python', color: '#3572A5', desc: 'Quantitative AI stock market analysis engine evaluating price trends, technical signals, and market indicators.', a1: ['Language', 'Python'], a2: ['Domain', 'Financial Analytics'], a3: ['Focus', 'Signal Modeling'] },
+        { name: 'Bharatiya Antariksh Hackathon 2026', url: 'https://github.com/dheeraj0677/Bharatiya-Antariksh-Hackathon-2026', cat: 'SpaceTech', tags: 'ai', lang: 'Python', color: '#3572A5', desc: 'National space-tech hackathon workspace and geospatial analytics prototypes for ISRO Bharatiya Antariksh 2026.', a1: ['Event', 'BAH 2026'], a2: ['Domain', 'Satellite Analytics'], a3: ['Companion', 'AgroSat AI'] },
+        { name: 'EcoTrack (Prompt Wars 3)', url: 'https://github.com/dheeraj0677/Google-prompt-wars-3', cat: 'Climate Tech', tags: 'fullstack', lang: 'JavaScript', color: '#f1e05a', desc: 'Dynamic single-page web application to calculate, understand, and reduce personal carbon footprints.', a1: ['Frontend', 'SPA Web App'], a2: ['Event', 'Google Prompt Wars 3'], a3: ['Focus', 'Sustainability'] },
+        { name: 'EcoTrace', url: 'https://github.com/dheeraj0677/Ecotrace', cat: 'Full-Stack', tags: 'fullstack', lang: 'JavaScript', color: '#f1e05a', desc: 'Carbon footprint tracker web application built with a modern React frontend and Node.js + Express backend.', a1: ['Frontend', 'React UI'], a2: ['Backend', 'Node.js / Express'], a3: ['Domain', 'Carbon Analytics'] },
+        { name: 'Road-Safety-Hackathon (PWA)', url: 'https://github.com/dheeraj0677/Road-Safety-Hackathon', cat: 'Emergency PWA', tags: 'fullstack', lang: 'JavaScript', color: '#f1e05a', desc: 'Mobile-first React Progressive Web App providing instant location-based one-tap SOS emergency assistance.', a1: ['Frontend', 'React PWA'], a2: ['Feature', 'One-Tap Geo SOS'], a3: ['Domain', 'Road Safety'] },
+        { name: 'Ayu-Care', url: 'https://github.com/dheeraj0677/Ayu-Care', cat: 'HealthTech', tags: 'fullstack', lang: 'JavaScript', color: '#f1e05a', desc: 'Digital healthcare platform enabling patients to search doctors, book appointments, and view digital prescriptions.', a1: ['Domain', 'Healthcare Portal'], a2: ['Features', 'Booking & Rx Records'], a3: ['Stack', 'JavaScript'] },
+        { name: 'Syllabot', url: 'https://github.com/dheeraj0677/Syllabot', cat: 'EdTech AI', tags: 'ai fullstack', lang: 'JavaScript', color: '#f1e05a', desc: 'AI-powered academic companion helping university students track syllabus progress, study schedules, and tasks.', a1: ['Domain', 'Academic Companion'], a2: ['Workflow', 'Schedule & Syllabus'], a3: ['Stack', 'JavaScript'] },
+        { name: 'HackXtreme', url: 'https://github.com/dheeraj0677/HackXtreme', cat: 'Multi-Agent AI', tags: 'ai', lang: 'Python', color: '#3572A5', desc: 'Multi-Agent AI orchestration framework automating complex multi-step reasoning and LLM telemetry workflows.', a1: ['Orchestrator', 'Multi-Agent Engine'], a2: ['Backend', 'Python / LLM API'], a3: ['Focus', 'Reasoning Pipelines'] },
+        { name: 'HACKEXTREME', url: 'https://github.com/dheeraj0677/HACKEXTREME', cat: 'AI Prototype', tags: 'ai', lang: 'Python', color: '#3572A5', desc: 'Rapid hackathon AI agent prototype exploring automated multi-stage task decomposition in Python.', a1: ['Runtime', 'Python'], a2: ['Focus', 'Agent Workflows'], a3: ['Type', 'Hackathon Build'] },
+        { name: 'Google-Solution-Challenge', url: 'https://github.com/dheeraj0677/Google-Solution-Challenge', cat: 'UN SDG Tech', tags: 'fullstack', lang: 'Python', color: '#3572A5', desc: 'Community solution submission addressing UN Sustainable Development Goals with Python cloud microservices.', a1: ['Frontend', 'Responsive Web Portal'], a2: ['Services', 'Python Microservices'], a3: ['Impact', 'UN SDG Analytics'] },
+        { name: 'Paygron', url: 'https://github.com/dheeraj0677/paygron', cat: 'FinTech Web', tags: 'fullstack', lang: 'JavaScript', color: '#f1e05a', desc: 'Modified web-based digital payment interface exploring streamlined transaction flows.', a1: ['Domain', 'Web Payment Flow'], a2: ['Stack', 'JavaScript / HTML5'], a3: ['Deploy', 'Static Web'] },
+        { name: 'DevTasks', url: 'https://github.com/dheeraj0677/devtasks', cat: 'Open Source', tags: 'fullstack', lang: 'JavaScript', color: '#f1e05a', desc: 'Minimalist open-source React task manager designed for developer roadmaps with theme toggles and persistence.', a1: ['Frontend', 'React UI'], a2: ['Features', 'Theme + Persistence'], a3: ['Focus', 'Open-Source OSS'] },
+        { name: 'EcoSync (ecosync-1)', url: 'https://github.com/dheeraj0677/ecosync-1', cat: 'Sustainability', tags: 'fullstack', lang: 'JavaScript', color: '#f1e05a', desc: 'Collaborative JavaScript web application focused on environmental synchronization and resource tracking.', a1: ['Stack', 'JavaScript'], a2: ['Domain', 'Eco-Tech'], a3: ['Type', 'Web App'] },
+        { name: 'SE-LAB', url: 'https://github.com/dheeraj0677/SE-LAB-', cat: 'Software Eng', tags: 'fullstack', lang: 'JavaScript', color: '#f1e05a', desc: 'Software Engineering laboratory project implementing structured modular JavaScript workflows.', a1: ['Course', 'VIT-AP SE Lab'], a2: ['Stack', 'JavaScript'], a3: ['Focus', 'SDLC Practices'] },
+        { name: 'HMS-Web', url: 'https://github.com/dheeraj0677/hms-web', cat: 'Clinical Web', tags: 'fullstack', lang: 'Web', color: '#88bed3', desc: 'Web module companion for hospital management workflows and administrative interfaces.', a1: ['Domain', 'Hospital Systems'], a2: ['Related', 'Hospital-Managment-System'], a3: ['Type', 'Web Module'] },
+        { name: 'Portfolio (This Site)', url: 'https://github.com/dheeraj0677/Portfolio', cat: 'Personal Site', tags: 'fullstack', lang: 'HTML / JS', color: '#e34c26', desc: 'Zero-build engineering portfolio featuring Aurum/Carrara themes, 3D Canvas core, and sticky project storytelling.', a1: ['Architecture', 'Zero-Build Static'], a2: ['Visuals', '3D Canvas + SVG'], a3: ['Host', 'GitHub Pages'] }
+      ];
+
+      const reposGridEl = document.getElementById('reposGrid');
+      if (reposGridEl) {
+        const extraHtml = EXTRA_GITHUB_REPOS.map((r) => `
+          <a href="${r.url}" target="_blank" rel="noopener" class="repo-card spotlight-card archive-extra is-hidden" data-tags="${r.tags}" data-search="${r.name.toLowerCase()} ${r.cat.toLowerCase()} ${r.desc.toLowerCase()} ${r.lang.toLowerCase()}">
+            <div>
+              <div class="repo-top">
+                <div class="repo-name">${r.name}</div>
+                <div class="repo-badges"><span class="repo-cat-pill">${r.cat}</span></div>
+              </div>
+              <p class="repo-desc">${r.desc}</p>
+              <div class="repo-arch-grid">
+                <div class="arch-item"><span class="arch-label">${r.a1[0]}</span><span class="arch-val">${r.a1[1]}</span></div>
+                <div class="arch-item"><span class="arch-label">${r.a2[0]}</span><span class="arch-val">${r.a2[1]}</span></div>
+                <div class="arch-item"><span class="arch-label">${r.a3[0]}</span><span class="arch-val">${r.a3[1]}</span></div>
+              </div>
+            </div>
+            <div class="repo-footer">
+              <span class="lang-indicator"><span class="lang-dot" style="background:${r.color}"></span> ${r.lang}</span>
+              <span class="repo-arrow">Repository &rarr;</span>
+            </div>
+          </a>
+        `).join('');
+        reposGridEl.insertAdjacentHTML('beforeend', extraHtml);
+        if (isFinePointer && !reducedMotion) {
+          reposGridEl.querySelectorAll('.archive-extra.spotlight-card').forEach((card) => {
+            card.addEventListener('pointermove', (e) => {
+              const rect = card.getBoundingClientRect();
+              card.style.setProperty('--mx', `${e.clientX - rect.left}px`);
+              card.style.setProperty('--my', `${e.clientY - rect.top}px`);
+            });
+          });
+        }
+      }
+
       const filterBtns = Array.from(document.querySelectorAll('.filter-btn'));
       const repoCards = Array.from(document.querySelectorAll('#reposGrid .repo-card'));
       const repoCountBadge = document.getElementById('repoCountBadge');
@@ -4202,7 +4350,7 @@
 
         repoCountBadge.textContent = `(${visibleCount} of ${repoCards.length})`;
         toggleArchiveBtn.style.display = filteringOrSearching ? 'none' : 'inline-flex';
-        toggleArchiveBtn.textContent = archiveExpanded ? 'Show Fewer Builds' : `Show All ${repoCards.length} Builds (+6)`;
+        toggleArchiveBtn.textContent = archiveExpanded ? 'Show Fewer Builds' : `Show All ${repoCards.length} Archive Builds (+${repoCards.length - 9})`;
       }
 
       filterBtns.forEach((btn) => {
